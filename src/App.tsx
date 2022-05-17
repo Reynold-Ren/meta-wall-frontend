@@ -1,43 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import Login from './views/Login';
+import Dashboard from './views/Dashboard';
+import Follower from './views/Follower';
+import Profile from './views/Profile';
+import Likes from './views/Likes';
+import User from './views/User';
 import './App.css';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
 	return (
 		<div className="App">
 			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="about" element={<About />} />
+				<Route path="login" element={<Login />} />
+				<Route path="dashboard" element={<Dashboard />} />
+				<Route path="follower" element={<Follower />} />
+				<Route path="profile" element={<Profile />} />
+				<Route path="likes" element={<Likes />} />
+				<Route path="user/:id" element={<User />} />
 			</Routes>
 		</div>
-	);
-}
-
-function Home() {
-	return (
-		<>
-			<main>
-				<h2>Welcome to the homepage!</h2>
-				<p>You can do this, I believe in you.</p>
-			</main>
-			<nav>
-				<Link to="/about">About</Link>
-			</nav>
-		</>
-	);
-}
-
-function About() {
-	return (
-		<>
-			<main>
-				<h2>Who are we?</h2>
-			</main>
-			<nav>
-				<Link to="/">Home</Link>
-			</nav>
-		</>
 	);
 }
 

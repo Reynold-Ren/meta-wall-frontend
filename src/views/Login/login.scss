@@ -1,0 +1,29 @@
+@import '../../scss/setup';
+
+.loginContainer {
+	@include rowVertically();
+	padding: 70px 48px;
+	max-width: 870px;
+	background-color: $brown;
+	box-shadow: -8px 8px 0px $lighten-gray;
+	border: 2px solid $black;
+	box-sizing: border-box;
+	&__illustration {
+		margin-right: 48px;
+	}
+	&__form {
+		align-self: flex-start;
+		&-logo {
+			text-align: center;
+			margin-bottom: 36px;
+		}
+		img {
+			max-width: 296px;
+		}
+		h2 {
+			font-size: 24px;
+			font-weight: bold;
+			color: $black;
+		}
+	}
+}

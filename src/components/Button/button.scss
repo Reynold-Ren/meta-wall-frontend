@@ -1,0 +1,35 @@
+@import '../../scss/setup';
+
+.btnContainer {
+	font-size: $font-m;
+	font-weight: bold;
+	white-space: nowrap;
+	cursor: pointer;
+	&.primary {
+		width: 100%;
+		padding: 16px;
+		color: $white;
+		background-color: $primary;
+		border: 2px solid $black;
+		border-radius: 8px;
+		box-shadow: -2px 2px 0px $black;
+		transition: 0.3s all;
+		margin-bottom: 16px;
+		&:hover:not(.disabled) {
+			color: $black;
+			background-color: $yellow;
+		}
+	}
+	&.secondry {
+		color: $black;
+		border: unset;
+		background-color: unset;
+		outline: unset;
+	}
+	&.disabled {
+		background-color: $gray-200;
+		border: 2px solid $gray-600;
+		box-shadow: none;
+		cursor: not-allowed;
+	}
+}

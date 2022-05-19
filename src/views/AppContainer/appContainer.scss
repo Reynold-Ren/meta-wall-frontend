@@ -1,0 +1,9 @@
+@import '../../scss/setup';
+
+.app__container {
+	@include rowVertically();
+	width: 100vw;
+	height: 100vh;
+	background: url('../../assets/background-grid.png') repeat center;
+	background-size: 50px;
+}

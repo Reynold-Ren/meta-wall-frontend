@@ -1,0 +1,25 @@
+@import '../../scss/setup';
+
+.loginFormContainer {
+	text-align: center;
+	&__inputGroup {
+		text-align: left;
+		margin-bottom: 16px;
+		input {
+			font-size: $font-m;
+			width: 100%;
+			padding: 16px 24px;
+			color: $black;
+			border: 2px solid $black;
+			&::placeholder {
+				color: #9b9893;
+			}
+		}
+	}
+	.errorMessage {
+		display: inline-block;
+		font-size: $font-s;
+		color: $pink;
+		padding-top: 4px;
+	}
+}

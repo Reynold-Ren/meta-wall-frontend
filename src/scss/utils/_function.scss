@@ -1,0 +1,8 @@
+@function line-height($index:1) {
+    $font-size: nth($font, $index);
+    @return (floor($font-size / 10px) +1) * 10px; 
+}
+
+@function trans($color: red, $opacity: 1) {
+    @return rgba(red($color),green($color), blue($color), $opacity);
+}

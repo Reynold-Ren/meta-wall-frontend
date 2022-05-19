@@ -1,0 +1,44 @@
+%clearfix {
+    &:after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+}
+
+%vertical_center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+%hide-text {
+    text-indent: 110%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+%margin_center {
+    margin: {
+        left: auto;
+        right: auto;
+    }
+}
+
+%triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+%horizontal {
+    left: 0;
+    right: 0;
+}
+
+%center {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}

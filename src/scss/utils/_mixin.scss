@@ -1,74 +1,74 @@
-@mixin circle($size: 25px,$bgcolor: black) {
-    display: inline-block;
-    width: $size;
-    height: $size;
-    border-radius: 50%;
-    background: $bgcolor;
+@mixin circle($size: 25px, $bgcolor: black) {
+	display: inline-block;
+	width: $size;
+	height: $size;
+	border-radius: 50%;
+	background: $bgcolor;
 }
 
 @mixin bgSetting($url) {
-    background: {
-        image: url("#{$imgPath}#{$url}");
-        position: center;
-        repeat: no-repeat;
-        size: cover;
-    }
+	background: {
+		image: url('#{$imgPath}#{$url}');
+		position: center;
+		repeat: no-repeat;
+		size: cover;
+	}
 }
 
 @mixin parallax($url) {
-    background: {
-        image: url("#{$url}");
-        position: center;
-        repeat: no-repeat;
-        size: cover;
-        color: transparent;
-        attachment: fixed;
-    }
+	background: {
+		image: url('#{$url}');
+		position: center;
+		repeat: no-repeat;
+		size: cover;
+		color: transparent;
+		attachment: fixed;
+	}
 }
 
-@mixin triangle($color: black,$heightSize: 5px, $widthSize: 10px) {
-    @extend %triangle;
-    border-width: $heightSize $widthSize 0 $widthSize;
-    border-color: $color transparent transparent transparent transparent;
+@mixin triangle($color: black, $heightSize: 5px, $widthSize: 10px) {
+	@extend %triangle;
+	border-width: $heightSize $widthSize 0 $widthSize;
+	border-color: $color transparent transparent transparent transparent;
 }
 
 @mixin linear($deg: 90deg, $firstColor: black, $secondColor: white) {
-    background: linear-gradient($deg, $firstColor 0%, $secondColor 100%)
+	background: linear-gradient($deg, $firstColor 0%, $secondColor 100%);
 }
 
-@mixin font($index:1) {
-    font-size: nth($font, $index );
-    line-height: line-height($index);
+@mixin font($index: 1) {
+	font-size: nth($font, $index);
+	line-height: line-height($index);
 
-    @if $index < 1 {
-        $index: 1;
-    }
+	@if $index < 1 {
+		$index: 1;
+	}
 
-    @if $index > length($font) {
-        $index: length($font);
-    }
+	@if $index > length($font) {
+		$index: length($font);
+	}
 }
 
 @mixin line($lineNum: 2) {
-    overflow:hidden;
-    text-overflow:ellipsis;
-    line-clamp: $lineNum
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-clamp: $lineNum;
 }
 
 @mixin shadow($out: 5px, $in: 5px) {
-    box-shadow: 0 0 $out rgba(0, 0, 0, .3), inset 0 0 $in rgba(0, 0, 0, .5);
+	box-shadow: 0 0 $out rgba(0, 0, 0, 0.3), inset 0 0 $in rgba(0, 0, 0, 0.5);
 }
 
 @mixin container() {
-    max-width: 1170px;
-    margin: 0 auto;
-    @include media($xl) {
-        max-width: 90%;
-    }
-    @include media($lg) {
-        max-width: 95%;
-    }
-    @content;
+	max-width: 1170px;
+	margin: 0 auto;
+	@include media($xl) {
+		max-width: 90%;
+	}
+	@include media($lg) {
+		max-width: 95%;
+	}
+	@content;
 }
 
 @mixin centerVertically() {
@@ -95,8 +95,8 @@
 	@content;
 }
 
-@mixin media ($query: $mobile) {
-    @media #{$query} {
-        @content;
-    }
+@mixin media($query: $mobile) {
+	@media #{$query} {
+		@content;
+	}
 }

@@ -6,7 +6,7 @@ type ButtonProps = {
 	wording: string;
 	disabled?: boolean;
 	style: string;
-	handleClick: (evt: React.MouseEvent<HTMLButtonElement>) => void;
+	handleClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const Button = ({ wording, disabled, style, handleClick }: ButtonProps) => {

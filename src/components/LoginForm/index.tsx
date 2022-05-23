@@ -3,6 +3,7 @@ import Button from '../Button';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState } from 'react';
 import { useLoginContext } from '../../context/login';
+import { useAuthContext } from '../../context/auth';
 
 interface IFormValues {
 	email: string;
@@ -11,19 +12,27 @@ interface IFormValues {
 
 const LoginForm = () => {
 	const [isError, setError] = useState<boolean>(false);
-	const { swtichMode } = useLoginContext();
+	const [errorMessage, setErrorMessage] = useState<string>('');
+	const { swtichMode, navigateTo, from } = useLoginContext();
+	const { signin } = useAuthContext();
 	const {
 		register,
 		formState: { errors },
 		handleSubmit,
 	} = useForm<IFormValues>();
 
-	const onClickRegisterButton = (evt: React.MouseEvent<HTMLButtonElement>) => {
-		console.log('event', evt.target);
-	};
-
-	const onSubmit: SubmitHandler<IFormValues> = (data) => {
-		alert(JSON.stringify(data));
+	const onSubmit: SubmitHandler<IFormValues> = async (data) => {
+		const { email, password } = data;
+		await signin(
+			{ email, password },
+			() => {
+				navigateTo(from, { replace: true });
+			},
+			(msg: string) => {
+				setError(true);
+				setErrorMessage(msg);
+			},
+		);
 	};
 
 	return (
@@ -45,8 +54,8 @@ const LoginForm = () => {
 				<input type="password" placeholder="Password" {...register('password', { required: '密碼尚未填寫' })} />
 				{errors.password?.message !== '' && <span className="errorMessage">{errors.password?.message}</span>}
 			</div>
-			{isError && <span className="errorMessage"></span>}
-			<Button wording="登入" handleClick={onClickRegisterButton} style="primary" />
+			{isError && <span className="errorMessage errorMessage-apis">{errorMessage}</span>}
+			<Button wording="登入" style="primary" />
 			<Button wording="註冊" handleClick={swtichMode} style="secondry" />
 		</form>
 	);

@@ -21,5 +21,9 @@
 		font-size: $font-s;
 		color: $pink;
 		padding-top: 4px;
+		&-apis {
+			padding-top: 0;
+			margin: 16px 0;
+		}
 	}
 }

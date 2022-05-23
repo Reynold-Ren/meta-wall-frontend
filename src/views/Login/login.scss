@@ -10,9 +10,11 @@
 	box-sizing: border-box;
 	&__illustration {
 		margin-right: 48px;
+		flex-grow: auto;
 	}
 	&__form {
 		align-self: flex-start;
+		flex: 0 0 37.27959698%;
 		&-logo {
 			text-align: center;
 			margin-bottom: 36px;

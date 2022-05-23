@@ -3,18 +3,37 @@ import Logo from '../../assets/login/logo.png';
 import Illustration from '../../assets/login/illustration.svg';
 import LoginForm from '../../components/LoginForm';
 import RegisterForm from '../../components/RegisterForm';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LoginContext } from '../../context/login';
+import { useToken } from '../../helpers/useToken';
+import { useAuthContext } from '../../context/auth';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { LocationProps } from '../../models/reack-router-interface';
 
 const Login = () => {
 	const [isRegisterMode, setRegisterMode] = useState<boolean>(false);
+	const { setUser } = useAuthContext();
+	const navigate = useNavigate();
+	const location = useLocation() as unknown as LocationProps;
+	const from = location.state?.from?.pathname || '/';
+
+	useEffect(() => {
+		if (useToken.exists()) {
+			setUser(JSON.parse(useToken.getToken()));
+			navigate(from, { replace: true });
+		}
+	}, []);
+
+	const navigateTo = (from: string): void => {
+		navigate(from, { replace: true });
+	};
 
 	const swtichMode = (): void => {
 		setRegisterMode(!isRegisterMode);
 	};
 
 	return (
-		<LoginContext.Provider value={{ swtichMode }}>
+		<LoginContext.Provider value={{ swtichMode, navigateTo, from }}>
 			<div className="loginContainer">
 				<div className="loginContainer__illustration">
 					<img src={Illustration} alt="" />

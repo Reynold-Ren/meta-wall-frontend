@@ -7,19 +7,58 @@ import Likes from './views/Likes';
 import User from './views/User';
 import './App.scss';
 import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/auth';
+import RequireAuth from './components/RequireAuth';
 
 function App() {
 	return (
-		<AppContainer>
-			<Routes>
-				<Route path="login" element={<Login />} />
-				<Route path="dashboard" element={<Dashboard />} />
-				<Route path="follower" element={<Follower />} />
-				<Route path="profile" element={<Profile />} />
-				<Route path="likes" element={<Likes />} />
-				<Route path="user/:id" element={<User />} />
-			</Routes>
-		</AppContainer>
+		<AuthProvider>
+			<AppContainer>
+				<Routes>
+					<Route path="login" element={<Login />} />
+					<Route
+						path="/"
+						element={
+							<RequireAuth>
+								<Dashboard />
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="follower"
+						element={
+							<RequireAuth>
+								<Follower />
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="profile"
+						element={
+							<RequireAuth>
+								<Profile />
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="likes"
+						element={
+							<RequireAuth>
+								<Likes />
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="user/:id"
+						element={
+							<RequireAuth>
+								<User />
+							</RequireAuth>
+						}
+					/>
+				</Routes>
+			</AppContainer>
+		</AuthProvider>
 	);
 }
 

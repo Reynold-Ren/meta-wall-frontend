@@ -1,0 +1,11 @@
+@import '../../scss/setup';
+
+.sidebarContainer {
+	@include columnVertically();
+	align-items: flex-start;
+	flex: 0 0 310px;
+	max-width: 310px;
+	background-color: $white;
+	padding: 32px 24px;
+	border: 2px solid $black;
+}

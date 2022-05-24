@@ -1,9 +1,17 @@
 @import '../../scss/setup';
 
-.app__container {
-	@include rowVertically();
+.appContainer {
+	@include columnVertically();
 	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
 	background: url('../../assets/background-grid.png') repeat center;
 	background-size: 50px;
+	&__body {
+		@include rowVertically();
+		@include container();
+		flex-grow: 1;
+	}
+	> * {
+		width: 100%;
+	}
 }

@@ -1,0 +1,23 @@
+@import '../../scss/setup';
+
+.headerWrap {
+	height: 60px;
+	top: 0;
+	z-index: 100;
+	background-color: $white;
+	border-bottom: 3px solid $black;
+	box-sizing: border-box;
+}
+
+.headerContainer {
+	@include container();
+	@include rowVertically();
+	justify-content: space-between;
+	height: 100%;
+	&__logo {
+		max-width: 128px;
+		img {
+			max-width: 100%;
+		}
+	}
+}

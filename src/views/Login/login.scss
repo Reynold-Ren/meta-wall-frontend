@@ -3,7 +3,6 @@
 .loginContainer {
 	@include rowVertically();
 	padding: 70px 48px;
-	max-width: 870px;
 	background-color: $brown;
 	box-shadow: -8px 8px 0px $lighten-gray;
 	border: 2px solid $black;

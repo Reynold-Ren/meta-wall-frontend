@@ -5,7 +5,7 @@ import LoginForm from '../../components/LoginForm';
 import RegisterForm from '../../components/RegisterForm';
 import { useState, useEffect } from 'react';
 import { LoginContext } from '../../context/login';
-import { useToken } from '../../helpers/useToken';
+import { useLocalStorage } from '../../helpers/useLocalSotrage';
 import { useAuthContext } from '../../context/auth';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { LocationProps } from '../../models/reack-router-interface';
@@ -18,8 +18,8 @@ const Login = () => {
 	const from = location.state?.from?.pathname || '/';
 
 	useEffect(() => {
-		if (useToken.exists()) {
-			setUser(JSON.parse(useToken.getToken()));
+		if (useLocalStorage.tokenIsExists()) {
+			setUser(JSON.parse(useLocalStorage.getUser()));
 			navigate(from, { replace: true });
 		}
 	}, []);
@@ -32,8 +32,10 @@ const Login = () => {
 		setRegisterMode(!isRegisterMode);
 	};
 
+	const checkErrors = (errors: Record<string, never>) => (Object.keys(errors).length === 0 ? false : true);
+
 	return (
-		<LoginContext.Provider value={{ swtichMode, navigateTo, from }}>
+		<LoginContext.Provider value={{ swtichMode, navigateTo, from, checkErrors }}>
 			<div className="loginContainer">
 				<div className="loginContainer__illustration">
 					<img src={Illustration} alt="" />

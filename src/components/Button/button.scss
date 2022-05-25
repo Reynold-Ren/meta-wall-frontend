@@ -26,6 +26,10 @@
 		background-color: unset;
 		outline: unset;
 	}
+	&.isPost {
+		background-color: $yellow;
+		color: $black;
+	}
 	&.disabled {
 		background-color: $gray-200;
 		border: 2px solid $gray-600;

@@ -1,0 +1,25 @@
+@import '../../scss/setup';
+
+.titleContainer {
+	position: relative;
+	font-size: $font-l;
+	font-weight: bold;
+	width: 100%;
+	border: 2px solid $black;
+	background-color: $white;
+	padding: 18px 0;
+	text-align: center;
+	transform-style: preserve-3d;
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		top: 8px;
+		right: 8px;
+		border: 2px solid $black;
+		background-color: $white;
+		transform: translateZ(-1px);
+	}
+}

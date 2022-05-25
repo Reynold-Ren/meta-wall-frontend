@@ -6,12 +6,14 @@ type ButtonProps = {
 	wording: string;
 	disabled?: boolean;
 	style: string;
+	layout?: string;
 	handleClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const Button = ({ wording, disabled, style, handleClick }: ButtonProps) => {
+const Button = ({ wording, disabled, style, layout, handleClick }: ButtonProps) => {
 	const activeClass = classnames({
 		disabled,
+		[`is${layout}`]: layout,
 		[`${style}`]: true,
 		btnContainer: true,
 	});

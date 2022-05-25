@@ -1,0 +1,78 @@
+@import '../../scss/setup';
+
+.postFormContainer {
+	@include columnVertically();
+	padding: 32px;
+	background-color: $white;
+	margin-top: 16px;
+	border: 2px solid $black;
+	&__inputGroup {
+		@include columnVertically();
+		align-items: flex-start;
+		width: 100%;
+		&:nth-child(2) {
+			margin-top: 16px;
+		}
+		label {
+			font-size: $font-m;
+			color: $black;
+			margin-bottom: 4px;
+			&[for='upload'] {
+				display: inline-block;
+				width: 128px;
+				padding: 8px;
+				background-color: $black;
+				color: $white;
+				text-align: center;
+				border-radius: 4px;
+				cursor: pointer;
+				margin-bottom: 16px;
+			}
+		}
+		textarea {
+			width: 100%;
+			height: 170px;
+			resize: none;
+			border: 2px solid $black;
+			padding: 12px 16px;
+			&:focus,
+			&:active {
+				outline: none;
+			}
+		}
+		#upload {
+			display: none;
+		}
+	}
+	.imageContainer {
+		position: relative;
+		width: 100%;
+		border: 2px solid $black;
+		border-radius: 8px;
+		margin-bottom: 32px;
+		img {
+			width: 100%;
+			object-fit: cover;
+			vertical-align: middle;
+		}
+		.removeBtn {
+			position: absolute;
+			right: 4px;
+			top: 4px;
+			font-size: $font-l;
+			color: white;
+			cursor: pointer;
+		}
+	}
+
+	.errorMessage {
+		display: inline-block;
+		font-size: $font-s;
+		color: $pink;
+		padding-top: 4px;
+		&-apis {
+			padding-top: 0;
+			margin: 16px 0;
+		}
+	}
+}

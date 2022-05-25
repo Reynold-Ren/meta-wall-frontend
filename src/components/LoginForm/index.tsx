@@ -13,7 +13,7 @@ interface IFormValues {
 const LoginForm = () => {
 	const [isError, setError] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState<string>('');
-	const { swtichMode, navigateTo, from } = useLoginContext();
+	const { swtichMode, navigateTo, from, checkErrors } = useLoginContext();
 	const { signin } = useAuthContext();
 	const {
 		register,
@@ -55,7 +55,7 @@ const LoginForm = () => {
 				{errors.password?.message !== '' && <span className="errorMessage">{errors.password?.message}</span>}
 			</div>
 			{isError && <span className="errorMessage errorMessage-apis">{errorMessage}</span>}
-			<Button wording="登入" style="primary" />
+			<Button wording="登入" style="primary" disabled={checkErrors(errors)} />
 			<Button wording="註冊" handleClick={swtichMode} style="secondry" />
 		</form>
 	);

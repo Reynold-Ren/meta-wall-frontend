@@ -1,10 +1,11 @@
 import AppContainer from './views/AppContainer';
 import Login from './views/Login';
 import Dashboard from './views/Dashboard';
-import Follower from './views/Follower';
+import Follow from './views/Follow';
 import Profile from './views/Profile';
 import Likes from './views/Likes';
 import User from './views/User';
+import CreatePosts from './views/CreatePosts';
 import './App.scss';
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/auth';
@@ -25,10 +26,10 @@ function App() {
 						}
 					/>
 					<Route
-						path="follower"
+						path="follow"
 						element={
 							<RequireAuth>
-								<Follower />
+								<Follow />
 							</RequireAuth>
 						}
 					/>
@@ -53,6 +54,14 @@ function App() {
 						element={
 							<RequireAuth>
 								<User />
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="create"
+						element={
+							<RequireAuth>
+								<CreatePosts />
 							</RequireAuth>
 						}
 					/>

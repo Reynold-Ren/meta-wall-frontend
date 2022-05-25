@@ -15,7 +15,7 @@ interface IFormValues {
 const RegisterForm = () => {
 	const [isError, setError] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState<string>('');
-	const { swtichMode, navigateTo, from } = useLoginContext();
+	const { swtichMode, navigateTo, from, checkErrors } = useLoginContext();
 	const { signup } = useAuthContext();
 	const {
 		register,
@@ -75,7 +75,7 @@ const RegisterForm = () => {
 				)}
 			</div>
 			{isError && <span className="errorMessage errorMessage-apis">{errorMessage}</span>}
-			<Button wording="註冊" style="primary" />
+			<Button wording="註冊" style="primary" disabled={checkErrors(errors)} />
 			<Button wording="登入" handleClick={swtichMode} style="secondry" />
 		</form>
 	);

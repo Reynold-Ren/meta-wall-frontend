@@ -1,10 +1,4 @@
-export interface LoginResponseType {
-	status: boolean;
-	message: string;
-	_id?: string;
-	name?: string;
-	token: string;
-}
+import { CommonResponseType } from './basic.interface';
 
 export interface LoginParams {
 	email: string;
@@ -14,4 +8,12 @@ export interface LoginParams {
 export interface RegisterParams extends LoginParams {
 	name: string;
 	confirmPassword: string;
+}
+
+export interface LoginResponseType extends CommonResponseType {
+	data: {
+		_id?: string;
+		name?: string;
+		token: string;
+	};
 }

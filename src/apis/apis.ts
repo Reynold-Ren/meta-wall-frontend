@@ -1,11 +1,15 @@
 import instance from './axios';
 import { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
-import { useToken } from '../helpers/useToken';
+import { useLocalStorage } from '../helpers/useLocalSotrage';
+import { CommonResponseType } from '../models/basic.interface';
 import { LoginParams, LoginResponseType, RegisterParams } from '../models/user.interface';
+import { CreatePostParams, PostResponseType } from '../models/post.interface';
 
-const getAuth = (token: string): object => ({ headers: { Authorization: `Bearer ${token}` } });
+const getAuth = (token: string): object => ({
+	headers: { Authorization: `Bearer ${token}` },
+});
 
-const responseBody = (response: AxiosResponse) => response.data.data;
+const responseBody = (response: AxiosResponse) => response.data;
 const errorBody = (error: AxiosError) => error.response?.data;
 
 const request = {
@@ -20,3 +24,11 @@ export const User = {
 	login: (params: LoginParams): Promise<LoginResponseType> => request.post('/user/login', params),
 	register: (params: RegisterParams): Promise<LoginResponseType> => request.post('/user/create', params),
 };
+
+export const Post = {
+	create: (params: CreatePostParams): Promise<PostResponseType> =>
+		request.post('/posts/create', params, getAuth(useLocalStorage.getToken())),
+};
+
+export const upload = (params: any): Promise<CommonResponseType> =>
+	request.post('/upload', params, getAuth(useLocalStorage.getToken()));

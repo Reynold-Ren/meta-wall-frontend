@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
-import { useToken } from '../helpers/useToken';
 import { User } from '../apis/apis';
+import { useLocalStorage } from '../helpers/useLocalSotrage';
 import { LoginParams, RegisterParams } from '../models/user.interface';
 
 interface AuthContextType {
@@ -20,9 +20,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const signin = async (params: LoginParams, successCallback: VoidFunction, failedCallback: (msg: string) => void) => {
 		const result = await User.login(params);
-		if (result.token) {
-			const { _id, name, token } = result;
-			useToken.setToken(JSON.stringify({ id: _id, name, token }));
+		if (result.data.token) {
+			const { _id, name, token } = result.data;
+			useLocalStorage.setUser(JSON.stringify({ id: _id, name, token }));
 			setUser({
 				id: _id,
 				name,
@@ -40,9 +40,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		failedCallback: (msg: string) => void,
 	) => {
 		const result = await User.register(params);
-		if (result.token) {
-			const { _id, name, token } = result;
-			useToken.setToken(JSON.stringify({ id: _id, name, token }));
+		if (result.data.token) {
+			const { _id, name, token } = result.data;
+			useLocalStorage.setUser(JSON.stringify({ id: _id, name, token }));
 			setUser({
 				id: _id,
 				name,
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const signout = (callback: VoidFunction) => {
-		useToken.removeToken();
+		useLocalStorage.removeUser();
 		setUser(null);
 		callback();
 	};

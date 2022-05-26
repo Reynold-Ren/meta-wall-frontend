@@ -1,0 +1,80 @@
+@import '../../scss/setup';
+
+.listItemContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+	padding: 18px 16px;
+	background-color: $white;
+	box-shadow: 0px 3px 0px $black;
+	border: 2px solid $black;
+	border-radius: 8px;
+	margin-top: 16px;
+	&__info {
+		@include rowVertically();
+		&-avatar {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			margin-right: 16px;
+			overflow: hidden;
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+		&-detail {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			height: 100%;
+			h3 {
+				font-size: $font-m;
+				font-weight: bold;
+				color: $black;
+			}
+			p {
+				font-size: $font-s;
+				color: $gray;
+			}
+		}
+	}
+	&__tools {
+		display: flex;
+	}
+	.followsAddOnContainer {
+		align-self: flex-end;
+		font-size: $font-s;
+		color: $black;
+	}
+	.likesAddOnContainer {
+		@include rowVertically();
+		align-self: center;
+		> * {
+			@include columnVertically();
+			cursor: pointer;
+		}
+		svg {
+			font-size: $font-l;
+		}
+		span {
+			display: inline-block;
+			font-size: $font-s;
+			font-weight: bold;
+			margin-top: 4px;
+		}
+		.cancleLikeBtn {
+			margin-right: 36px;
+			svg {
+				color: $darken-blue;
+			}
+		}
+		.getPostDetailBtn {
+			margin-right: 24px;
+			svg {
+				color: $black;
+			}
+		}
+	}
+}

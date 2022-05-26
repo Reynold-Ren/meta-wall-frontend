@@ -1,0 +1,18 @@
+@import '../../scss/setup';
+
+.uploaderContainer {
+	input {
+		display: none;
+	}
+	label[for="upload"] {
+		display: inline-block;
+		width: 128px;
+		padding: 8px;
+		background-color: $black;
+		color: $white;
+		text-align: center;
+		border-radius: 4px;
+		cursor: pointer;
+		margin-bottom: 16px;
+	}
+}

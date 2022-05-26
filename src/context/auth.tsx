@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const signin = async (params: LoginParams, successCallback: VoidFunction, failedCallback: (msg: string) => void) => {
 		const result = await User.login(params);
-		if (result.data.token) {
+		if (result.data?.token) {
 			const { _id, name, token } = result.data;
 			useLocalStorage.setUser(JSON.stringify({ id: _id, name, token }));
 			setUser({

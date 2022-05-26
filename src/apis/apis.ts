@@ -2,7 +2,14 @@ import instance from './axios';
 import { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
 import { useLocalStorage } from '../helpers/useLocalSotrage';
 import { CommonResponseType } from '../models/basic.interface';
-import { LoginParams, LoginResponseType, RegisterParams } from '../models/user.interface';
+import {
+	LoginParams,
+	LoginResponseType,
+	RegisterParams,
+	ResetPasswordParams,
+	EditProfileParams,
+	EditProfileResponseType,
+} from '../models/user.interface';
 import { CreatePostParams, PostResponseType } from '../models/post.interface';
 
 const getAuth = (token: string): object => ({
@@ -16,6 +23,8 @@ const request = {
 	get: (url: string) => instance.get(url).then(responseBody).catch(errorBody),
 	post: (url: string, body: any, headers?: AxiosRequestConfig) =>
 		instance.post(url, body, headers).then(responseBody).catch(errorBody),
+	patch: (url: string, body: any, headers?: AxiosRequestConfig) =>
+		instance.patch(url, body, headers).then(responseBody).catch(errorBody),
 	put: (url: string, body: any) => instance.put(url, body).then(responseBody).catch(errorBody),
 	delete: (url: string) => instance.delete(url).then(responseBody).catch(errorBody),
 };
@@ -23,6 +32,10 @@ const request = {
 export const User = {
 	login: (params: LoginParams): Promise<LoginResponseType> => request.post('/user/login', params),
 	register: (params: RegisterParams): Promise<LoginResponseType> => request.post('/user/create', params),
+	resetPassword: (params: ResetPasswordParams): Promise<CommonResponseType> =>
+		request.post('/user/update_password', params, getAuth(useLocalStorage.getToken())),
+	editProfile: (params: EditProfileParams): Promise<EditProfileResponseType> =>
+		request.patch('/user/profile', params, getAuth(useLocalStorage.getToken())),
 };
 
 export const Post = {

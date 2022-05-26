@@ -5,7 +5,7 @@ const instance = axios.create({
 		'Content-Type': 'application/json',
 	},
 	baseURL: process.env.REACT_APP_API_URL,
-	timeout: 3000,
+	timeout: 10000,
 });
 
 export default instance;

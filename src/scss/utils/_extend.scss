@@ -42,3 +42,36 @@
 	top: 0;
 	bottom: 0;
 }
+
+%inputGroup {
+	text-align: left;
+	margin-bottom: 16px;
+	label {
+		display: inline-block;
+		font-size: $font-m;
+		color: $black;
+		margin-bottom: 4px;
+	}
+	input {
+		font-size: $font-m;
+		width: 100%;
+		padding: 16px 24px;
+		color: $black;
+		border: 2px solid $black;
+		&::placeholder {
+			color: #9b9893;
+		}
+		&:focus,
+		&:active {
+			outline: unset;
+		}
+	}
+}
+
+%errorMessage {
+	display: inline-block;
+	font-size: $font-s;
+	color: $pink;
+	padding-top: 4px;
+	line-height: 1.56;
+}

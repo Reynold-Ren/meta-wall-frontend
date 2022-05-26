@@ -95,6 +95,34 @@
 	@content;
 }
 
+@mixin basicBorder() {
+	border: 2px solid $black;
+	border-radius: 8px;
+}
+
+@mixin basicLabel() {
+	display: inline-block;
+	font-size: $font-m;
+	color: $black;
+	margin-bottom: 6px;
+}
+
+@mixin basicInput() {
+	font-size: $font-m;
+	width: 100%;
+	padding: 16px 24px;
+	font-size: $font-m;
+	color: $black;
+	border: 2px solid $black;
+	&::placeholder {
+		color: $gray;
+	}
+	&:focus,
+	&:active {
+		outline: unset;
+	}
+}
+
 @mixin media($query: $mobile) {
 	@media #{$query} {
 		@content;

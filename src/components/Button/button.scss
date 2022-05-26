@@ -6,12 +6,11 @@
 	white-space: nowrap;
 	cursor: pointer;
 	&.primary {
+		@include basicBorder();
 		width: 100%;
 		padding: 16px;
 		color: $white;
 		background-color: $primary;
-		border: 2px solid $black;
-		border-radius: 8px;
 		box-shadow: -2px 2px 0px $black;
 		transition: 0.3s all;
 		margin-bottom: 16px;
@@ -26,7 +25,8 @@
 		background-color: unset;
 		outline: unset;
 	}
-	&.isPost {
+	&.isPost,
+	&.isEditProfile {
 		background-color: $yellow;
 		color: $black;
 	}

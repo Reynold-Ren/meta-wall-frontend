@@ -1,9 +1,9 @@
 import './createPosts.scss';
 import Title from '../../components/Title';
 import Button from '../../components/Button';
+import Uploader from '../../components/Uploader';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState } from 'react';
-import { upload } from '../../apis/apis';
 import { IoCloseSharp } from 'react-icons/io5';
 import { Post } from '../../apis/apis';
 import { useNavigate } from 'react-router-dom';
@@ -41,17 +41,13 @@ const CreatePosts = () => {
 		setImageUrl('');
 	};
 
-	const handleFileUpload = async (evt: React.ChangeEvent<HTMLInputElement>) => {
-		const file = (evt.target as HTMLInputElement).files || [];
-		const formData = new FormData();
-		formData.append('file', file[0]);
-		const result = await upload(formData);
-		if (result.status) {
-			setImageUrl(result.message);
-			setValue('image', result.message);
+	const getUploadResult = (status: boolean, msg: string): void => {
+		if (status) {
+			setImageUrl(msg);
+			setValue('image', msg);
 		} else {
 			setError(true);
-			setErrorMessage(result.message);
+			setErrorMessage(msg);
 		}
 	};
 
@@ -72,8 +68,7 @@ const CreatePosts = () => {
 					{errors.content?.message !== '' && <span className="errorMessage">{errors.content?.message}</span>}
 				</div>
 				<div className="postFormContainer__inputGroup">
-					<label htmlFor="upload">上傳圖片</label>
-					<input id="upload" type="file" onChange={handleFileUpload} />
+					<Uploader type="image" handleUploadFinnish={getUploadResult} />
 					{imageUrl && (
 						<div className="imageContainer">
 							<div className="removeBtn" onClick={handleRemoveImg}>

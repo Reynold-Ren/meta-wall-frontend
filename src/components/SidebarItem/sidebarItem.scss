@@ -19,13 +19,10 @@
 	&__icon,
 	&__avatar {
 		@include rowVertically();
-		width: 50px;
-		height: 50px;
+		@include avatar(50px);
 		font-size: $font-l;
 		color: $black;
 		background-color: $blue;
-		border: 2px solid $black;
-		border-radius: 50%;
 		margin-right: 16px;
 		transition: 0.3s all;
 		overflow: hidden;

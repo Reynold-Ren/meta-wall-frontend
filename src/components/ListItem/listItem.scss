@@ -13,16 +13,8 @@
 	&__info {
 		@include rowVertically();
 		&-avatar {
-			width: 40px;
-			height: 40px;
-			border-radius: 50%;
+			@include avatar(46px);
 			margin-right: 16px;
-			overflow: hidden;
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
 		}
 		&-detail {
 			display: flex;

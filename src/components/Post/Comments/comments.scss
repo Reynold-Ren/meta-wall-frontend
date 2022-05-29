@@ -1,0 +1,35 @@
+@import '../../../scss/setup';
+
+.commentsContainer {
+	margin-top: 16px;
+	&__head {
+		@include rowVertically();
+		&__avatar {
+			@include avatar(40px);
+			flex: 0 0 40px;
+			margin-right: 8px;
+		}
+		&__inputGroup {
+			@include rowVertically();
+			position: relative;
+			flex-grow: 1;
+			input {
+				@include basicInput();
+				padding: 8px 128px 8px 16px;
+			}
+			.sendBtn {
+				@include rowVertically();
+				position: absolute;
+				width: 128px;
+				height: 35px;
+				right: 2px;
+				background-color: $darken-blue;
+				color: $white;
+				border-left: 2px solid $black;
+				cursor: pointer;
+			}
+		}
+	}
+	&__body {
+	}
+}

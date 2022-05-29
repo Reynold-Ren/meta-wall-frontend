@@ -1,0 +1,17 @@
+@import '../../../scss/setup';
+
+.likesContainer {
+	@include rowVertically();
+	justify-content: flex-start;
+	color: $gray;
+	font-size: $font-m;
+	cursor: pointer;
+	svg {
+		display: inline-block;
+		font-size: $font-l;
+		margin-right: 4px;
+	}
+	&.isLiked {
+		color: $darken-blue;
+	}
+}

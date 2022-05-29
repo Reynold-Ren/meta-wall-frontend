@@ -1,0 +1,28 @@
+@import '../../../scss/setup';
+
+.commentsItemContainer {
+	display: flex;
+	padding: 18px 16px;
+	background-color: $brown;
+	border-radius: 12px;
+	margin-top: 16px;
+	&__avatar {
+		@include avatar(40px);
+		margin-right: 12px;
+	}
+	&__info {
+		@include columnVertically();
+		align-items: flex-start;
+		font-size: $font-m;
+		color: $black;
+		h3 {
+			margin: 4px 0;
+		}
+		span {
+			display: inline-block;
+			font-size: $font-xs;
+			color: $gray;
+			margin-bottom: 10px;
+		}
+	}
+}

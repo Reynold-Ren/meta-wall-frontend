@@ -5,7 +5,7 @@ import Uploader from '../../components/Uploader';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState } from 'react';
 import { IoCloseSharp } from 'react-icons/io5';
-import { Post } from '../../apis/apis';
+import { Posts } from '../../apis/apis';
 import { useNavigate } from 'react-router-dom';
 
 interface IFormValues {
@@ -28,7 +28,7 @@ const CreatePosts = () => {
 
 	const onSubmit: SubmitHandler<IFormValues> = async (data) => {
 		const { content, image } = data;
-		const result = await Post.create({ content, image });
+		const result = await Posts.create({ content, image });
 		if (result.status) {
 			navigate('/');
 		} else {

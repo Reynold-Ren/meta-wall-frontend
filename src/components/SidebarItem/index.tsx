@@ -17,7 +17,9 @@ const SidebarItem = ({ avatar, icon, wording, handleClick }: SidebarItemProps) =
 				</div>
 			) : (
 				<div onClick={handleClick} className="sidebarItemContainer">
-					<img src={avatar} alt="" className="sidebarItemContainer__avatar" />
+					<div className="sidebarItemContainer__avatar">
+						<img src={avatar} alt="" />
+					</div>
 					{wording}
 				</div>
 			)}

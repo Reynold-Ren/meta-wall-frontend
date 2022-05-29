@@ -11,7 +11,23 @@ export interface PostResponseType extends CommonResponseType {
 		name: string;
 		content: string;
 		image: string;
-		likes: string[];
-		createdAt: string;
+		likes?: string[];
+		createdAt?: string;
 	};
 }
+
+export type FetchPostsType = Array<{
+	_id: string;
+	name: string;
+	content: string;
+	image: string;
+	likes: string[];
+}>;
+
+export interface FetchPostResponseType extends CommonResponseType {
+	data: FetchPostsType;
+}
+
+export type LikesParamsType = {
+	_id: string;
+};

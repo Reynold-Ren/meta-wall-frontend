@@ -10,7 +10,7 @@ import {
 	EditProfileParams,
 	EditProfileResponseType,
 } from '../models/user.interface';
-import { CreatePostParams, PostResponseType } from '../models/post.interface';
+import { CreatePostParams, PostResponseType, FetchPostResponseType, LikesParamsType } from '../models/post.interface';
 
 const getAuth = (token: string): object => ({
 	headers: { Authorization: `Bearer ${token}` },
@@ -26,7 +26,11 @@ const request = {
 	patch: (url: string, body: any, headers?: AxiosRequestConfig) =>
 		instance.patch(url, body, headers).then(responseBody).catch(errorBody),
 	put: (url: string, body: any) => instance.put(url, body).then(responseBody).catch(errorBody),
-	delete: (url: string) => instance.delete(url).then(responseBody).catch(errorBody),
+	delete: (url: string, body: any, headers?: AxiosRequestConfig) =>
+		instance
+			.delete(url, { data: body, ...headers })
+			.then(responseBody)
+			.catch(errorBody),
 };
 
 export const User = {
@@ -38,9 +42,14 @@ export const User = {
 		request.patch('/user/profile', params, getAuth(useLocalStorage.getToken())),
 };
 
-export const Post = {
+export const Posts = {
 	create: (params: CreatePostParams): Promise<PostResponseType> =>
 		request.post('/posts/create', params, getAuth(useLocalStorage.getToken())),
+	getAll: (): Promise<FetchPostResponseType> => request.get('/posts/'),
+	addLike: (params: LikesParamsType): Promise<CommonResponseType> =>
+		request.post(`/posts/${params._id}/likes`, params, getAuth(useLocalStorage.getToken())),
+	unLike: (params: LikesParamsType): Promise<CommonResponseType> =>
+		request.delete(`/posts/${params._id}/likes`, params, getAuth(useLocalStorage.getToken())),
 };
 
 export const upload = (params: any): Promise<CommonResponseType> =>

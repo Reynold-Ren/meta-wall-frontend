@@ -1,10 +1,11 @@
 import './commentsItem.scss';
+import defaultAvatar from '../../../assets/user_default.png';
 
 const CommentsItem = () => {
 	return (
 		<div className="commentsItemContainer">
 			<div className="commentsItemContainer__avatar">
-				<img src="" alt="" />
+				<img src={defaultAvatar} alt="" />
 			</div>
 			<div className="commentsItemContainer__info">
 				<h3>希琳</h3>

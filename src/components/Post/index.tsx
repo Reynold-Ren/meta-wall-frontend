@@ -2,6 +2,7 @@ import './post.scss';
 import { useState, useEffect } from 'react';
 import Likes from './Likes';
 import Comments from './Comments';
+import defaultAvatar from '../../assets/user_default.png';
 import { Posts } from '../../apis/apis';
 import { useAuthContext } from '../../context/auth';
 
@@ -50,7 +51,7 @@ const Post = ({ post }: PostProps) => {
 		<div className="postContainer">
 			<div className="postContainer__header">
 				<div className="postContainer__header-avatar">
-					<img src="" alt="" />
+					<img src={defaultAvatar} alt="" />
 				</div>
 				<div className="postContainer__header-info">
 					<h3>{name}</h3>

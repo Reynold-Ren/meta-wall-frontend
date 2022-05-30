@@ -24,7 +24,7 @@ export type FetchPostsType = Array<{
 	likes: string[];
 }>;
 
-export interface FetchPostResponseType extends CommonResponseType {
+export interface FetchPostsResponseType extends CommonResponseType {
 	data: FetchPostsType;
 }
 

@@ -9,8 +9,9 @@ import {
 	ResetPasswordParams,
 	EditProfileParams,
 	EditProfileResponseType,
+	LikeListResponseType,
 } from '../models/user.interface';
-import { CreatePostParams, PostResponseType, FetchPostResponseType, LikesParamsType } from '../models/post.interface';
+import { CreatePostParams, PostResponseType, FetchPostsResponseType, LikesParamsType } from '../models/post.interface';
 
 const getAuth = (token: string): object => ({
 	headers: { Authorization: `Bearer ${token}` },
@@ -20,7 +21,11 @@ const responseBody = (response: AxiosResponse) => response.data;
 const errorBody = (error: AxiosError) => error.response?.data;
 
 const request = {
-	get: (url: string) => instance.get(url).then(responseBody).catch(errorBody),
+	get: (url: string, headers?: AxiosRequestConfig) =>
+		instance
+			.get(url, { ...headers })
+			.then(responseBody)
+			.catch(errorBody),
 	post: (url: string, body: any, headers?: AxiosRequestConfig) =>
 		instance.post(url, body, headers).then(responseBody).catch(errorBody),
 	patch: (url: string, body: any, headers?: AxiosRequestConfig) =>
@@ -40,12 +45,14 @@ export const User = {
 		request.post('/user/update_password', params, getAuth(useLocalStorage.getToken())),
 	editProfile: (params: EditProfileParams): Promise<EditProfileResponseType> =>
 		request.patch('/user/profile', params, getAuth(useLocalStorage.getToken())),
+	getLikesList: (): Promise<LikeListResponseType> =>
+		request.get('user/getLikesList/', getAuth(useLocalStorage.getToken())),
 };
 
 export const Posts = {
 	create: (params: CreatePostParams): Promise<PostResponseType> =>
 		request.post('/posts/create', params, getAuth(useLocalStorage.getToken())),
-	getAll: (): Promise<FetchPostResponseType> => request.get('/posts/'),
+	getAll: (): Promise<FetchPostsResponseType> => request.get('/posts/', getAuth(useLocalStorage.getToken())),
 	addLike: (params: LikesParamsType): Promise<CommonResponseType> =>
 		request.post(`/posts/${params._id}/likes`, params, getAuth(useLocalStorage.getToken())),
 	unLike: (params: LikesParamsType): Promise<CommonResponseType> =>

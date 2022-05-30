@@ -8,7 +8,7 @@ import { CSSTransition } from 'react-transition-group';
 
 const DropMenu = () => {
 	const [isDropMenuShow, setDropMenuShow] = useState<boolean>(false);
-	const { signout } = useAuthContext();
+	const { signout, user } = useAuthContext();
 	const navigate = useNavigate();
 	const nodeRef = useRef(null);
 
@@ -19,7 +19,7 @@ const DropMenu = () => {
 			onMouseLeave={() => setDropMenuShow(false)}
 		>
 			<div className="dropmenuContainer__avatar">
-				<img src={defaultAvatar} alt="" />
+				<img src={user.photo === '' ? defaultAvatar : user.photo} alt="" />
 			</div>
 			<div className="dropmenuContainer__role">Member</div>
 			<CSSTransition in={isDropMenuShow} timeout={2000} classNames="dropmenu" nodeRef={nodeRef} unmountOnExit>

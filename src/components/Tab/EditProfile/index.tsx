@@ -1,10 +1,12 @@
 import './editProfile.scss';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '../../Button';
 import Uploader from '../../Uploader';
 import defaultAvatar from '../../../assets/user_default.png';
 import { User } from '../../../apis/apis';
+import { useAuthContext } from '../../../context/auth';
+import { useLocalStorage } from '../../../helpers/useLocalSotrage';
 
 interface IFormValues {
 	photo: string;
@@ -14,8 +16,10 @@ interface IFormValues {
 
 const EditProfile = () => {
 	const [imageUrl, setImageUrl] = useState<string>('');
+	const [avatar, setAvatar] = useState<string>(defaultAvatar);
 	const [isError, setError] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState<string>('');
+	const { user, setUser } = useAuthContext();
 	const {
 		register,
 		formState: { errors },
@@ -23,11 +27,19 @@ const EditProfile = () => {
 		setValue,
 	} = useForm<IFormValues>();
 
+	useEffect(() => {
+		setValue('name', user.name);
+		if (user.photo !== '') {
+			setAvatar(user.photo);
+		}
+	}, []);
+
 	const onSubmit: SubmitHandler<IFormValues> = async (data) => {
 		const { name, gender, photo = '' } = data;
 		const result = await User.editProfile({ name, gender, photo });
 		if (result.status) {
-			console.log(result);
+			setUser({ ...user, name, photo });
+			useLocalStorage.updateUser({ name, photo });
 		} else {
 			setError(true);
 			setErrorMessage(result.message);
@@ -39,6 +51,7 @@ const EditProfile = () => {
 	const getUploadResult = (status: boolean, msg: string): void => {
 		if (status) {
 			setImageUrl(msg);
+			setAvatar(msg);
 			setValue('photo', msg);
 		} else {
 			setError(true);
@@ -50,7 +63,7 @@ const EditProfile = () => {
 		<form onSubmit={handleSubmit(onSubmit)} className="editProfileFormContainer">
 			<div className="editProfileFormContainer__inputGroup">
 				<div className="editProfileFormContainer__inputGroup-avatar">
-					<img src={imageUrl === '' ? defaultAvatar : imageUrl} alt="" />
+					<img src={avatar} alt="" />
 				</div>
 				<Uploader type="avatar" handleUploadFinnish={getUploadResult} />
 			</div>

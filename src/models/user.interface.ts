@@ -23,9 +23,12 @@ export interface EditProfileParams {
 
 export interface LoginResponseType extends CommonResponseType {
 	data: {
-		_id?: string;
-		name?: string;
 		token: string;
+		user: {
+			id?: string;
+			name?: string;
+			photo: string;
+		};
 	};
 }
 
@@ -35,4 +38,18 @@ export interface EditProfileResponseType extends CommonResponseType {
 		photo: string;
 		gender: 'male' | 'female' | 'x';
 	};
+}
+
+export type LikesType = {
+	_id: string;
+	name: string;
+	photo: string;
+};
+
+export interface LikeListResponseType extends CommonResponseType {
+	data: {
+		_id: string;
+		userId: LikesType;
+		createdAt: string;
+	}[];
 }

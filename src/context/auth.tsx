@@ -21,12 +21,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const signin = async (params: LoginParams, successCallback: VoidFunction, failedCallback: (msg: string) => void) => {
 		const result = await User.login(params);
 		if (result.data?.token) {
-			const { _id, name, token } = result.data;
-			useLocalStorage.setUser(JSON.stringify({ id: _id, name, token }));
+			const { id, name, photo } = result.data.user;
+			useLocalStorage.setUser(JSON.stringify({ id, name, photo }));
+			useLocalStorage.setToken(result.data.token);
 			setUser({
-				id: _id,
+				id,
 				name,
-				token,
+				photo,
 			});
 			successCallback();
 		} else {
@@ -40,13 +41,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		failedCallback: (msg: string) => void,
 	) => {
 		const result = await User.register(params);
-		if (result.data.token) {
-			const { _id, name, token } = result.data;
-			useLocalStorage.setUser(JSON.stringify({ id: _id, name, token }));
+		if (result.data?.token) {
+			const { id, name, photo } = result.data.user;
+			useLocalStorage.setUser(JSON.stringify({ id, name, photo }));
+			useLocalStorage.setToken(result.data.token);
 			setUser({
-				id: _id,
+				id,
 				name,
-				token,
+				photo,
 			});
 			successCallback();
 		} else {
@@ -56,6 +58,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const signout = (callback: VoidFunction) => {
 		useLocalStorage.removeUser();
+		useLocalStorage.removeToken();
 		setUser(null);
 		callback();
 	};

@@ -5,11 +5,13 @@ import Follow from './views/Follow';
 import Profile from './views/Profile';
 import Likes from './views/Likes';
 import User from './views/User';
+import Shop from './views/Shop';
 import CreatePosts from './views/CreatePosts';
 import './App.scss';
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/auth';
 import RequireAuth from './components/RequireAuth';
+import SocialLogin from './components/SocialLogin';
 
 function App() {
 	return (
@@ -20,9 +22,11 @@ function App() {
 					<Route
 						path="/"
 						element={
-							<RequireAuth>
-								<Dashboard />
-							</RequireAuth>
+							<SocialLogin>
+								<RequireAuth>
+									<Dashboard />
+								</RequireAuth>
+							</SocialLogin>
 						}
 					/>
 					<Route
@@ -62,6 +66,14 @@ function App() {
 						element={
 							<RequireAuth>
 								<CreatePosts />
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="shop"
+						element={
+							<RequireAuth>
+								<Shop />
 							</RequireAuth>
 						}
 					/>

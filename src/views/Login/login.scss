@@ -28,3 +28,21 @@
 		}
 	}
 }
+
+.socialLoginContainer {
+	@include rowVertically();
+	margin-top: 8px;
+	a {
+		@include rowVertically();
+		@include basicBorder();
+		width: 48px;
+		height: 48px;
+		background-color: $white;
+		border-radius: 50%;
+		margin: 0 8px;
+		svg {
+			font-size: $font-xl;
+			color: $black;
+		}
+	}
+}

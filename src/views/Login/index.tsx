@@ -9,6 +9,9 @@ import { useLocalStorage } from '../../helpers/useLocalSotrage';
 import { useAuthContext } from '../../context/auth';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { LocationProps } from '../../models/reack-router-interface';
+import { FaLine } from 'react-icons/fa';
+import { AiFillGoogleSquare } from 'react-icons/ai';
+import { IoLogoFacebook } from 'react-icons/io';
 
 const Login = () => {
 	const [isRegisterMode, setRegisterMode] = useState<boolean>(false);
@@ -34,6 +37,8 @@ const Login = () => {
 
 	const checkErrors = (errors: Record<string, never>) => (Object.keys(errors).length === 0 ? false : true);
 
+	const API_URL = process.env.REACT_APP_API_URL;
+
 	return (
 		<LoginContext.Provider value={{ swtichMode, navigateTo, from, checkErrors }}>
 			<div className="loginContainer">
@@ -46,6 +51,17 @@ const Login = () => {
 						<h2>{isRegisterMode ? '註冊' : '到元宇宙展開全新社交圈'}</h2>
 					</div>
 					<div className="loginContainer__form-input">{isRegisterMode ? <RegisterForm /> : <LoginForm />}</div>
+					<div className="socialLoginContainer">
+						<a href={`${API_URL}/user/google`}>
+							<AiFillGoogleSquare />
+						</a>
+						<a href={`${API_URL}/user/facebook`}>
+							<IoLogoFacebook />
+						</a>
+						<a href={`${API_URL}/user/line`}>
+							<FaLine />
+						</a>
+					</div>
 				</div>
 			</div>
 		</LoginContext.Provider>

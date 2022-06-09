@@ -12,6 +12,7 @@ import {
 	LikeListResponseType,
 } from '../models/user.interface';
 import { CreatePostParams, PostResponseType, FetchPostsResponseType, LikesParamsType } from '../models/post.interface';
+import { OrderResponseType, CreateOrderParams } from '../models/order.interface';
 
 const getAuth = (token: string): object => ({
 	headers: { Authorization: `Bearer ${token}` },
@@ -57,6 +58,11 @@ export const Posts = {
 		request.post(`/posts/${params._id}/likes`, params, getAuth(useLocalStorage.getToken())),
 	unLike: (params: LikesParamsType): Promise<CommonResponseType> =>
 		request.delete(`/posts/${params._id}/likes`, params, getAuth(useLocalStorage.getToken())),
+};
+
+export const Order = {
+	create: (params: CreateOrderParams): Promise<OrderResponseType> =>
+		request.post('/donate/', params, getAuth(useLocalStorage.getToken())),
 };
 
 export const upload = (params: any): Promise<CommonResponseType> =>

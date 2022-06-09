@@ -36,4 +36,9 @@
 		box-shadow: none;
 		cursor: not-allowed;
 	}
+	&.isShop {
+		font-size: $font-xl;
+		font-weight: bold;
+		margin: 8px 0 0;
+	}
 }

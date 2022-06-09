@@ -1,0 +1,53 @@
+@import '../../scss/setup';
+
+.shopContainer {
+	@include rowVertically();
+	justify-content: space-between;
+	margin-top: 32px;
+	flex-wrap: wrap;
+}
+
+.shopItemContainer {
+	@include basicBorder();
+	flex: 0 0 calc(33.33333% - (40px / 3));
+	max-width: calc(33.33333% - (40px / 3));
+	background-color: white;
+	padding: 36px 34px;
+	h2 {
+		font-size: $font-xxl;
+		font-weight: bold;
+		color: $black;
+		text-align: center;
+		margin-bottom: 24px;
+	}
+	img {
+		display: block;
+		margin: 0 auto 26px;
+	}
+	> div {
+		@include rowVertically();
+		justify-content: space-between;
+		color: $darken-blue;
+		font-size: $font-l;
+		margin-bottom: 16px;
+		p {
+			font-size: 28px;
+		}
+	}
+}
+
+.ReactModal__Content h2,
+.ReactModal__Content p {
+	font-size: $font-xxl;
+	color: $black;
+	margin-bottom: 32px;
+	text-align: center;
+}
+
+.ReactModal__Content h2 {
+	font-weight: bold;
+}
+
+.ReactModal__Content .btnContainer {
+	margin-bottom: 0;
+}

@@ -10,6 +10,9 @@
 	padding: 18px 0;
 	text-align: center;
 	transform-style: preserve-3d;
+	&.large {
+		font-size: 36px;
+	}
 	&::after {
 		content: '';
 		position: absolute;
@@ -21,5 +24,11 @@
 		border: 2px solid $black;
 		background-color: $white;
 		transform: translateZ(-1px);
+	}
+	p {
+		font-size: $font-l;
+		font-weight: normal;
+		color: $gray-500;
+		margin-top: 16px;
 	}
 }

@@ -3,10 +3,10 @@ import Title from '../../components/Title';
 import ListItem from '../../components/ListItem';
 import Empty from '../../components/Empty';
 import { User } from '../../apis/apis';
-import { userFieldType } from '../../models/user.interface';
+import { UserFieldType } from '../../models/user.interface';
 
 type FollowListType = {
-	user: userFieldType;
+	user: UserFieldType;
 	createdAt: string;
 }[];
 

@@ -3,11 +3,11 @@ import Title from '../../components/Title';
 import ListItem from '../../components/ListItem';
 import Empty from '../../components/Empty';
 import { User } from '../../apis/apis';
-import { userFieldType } from '../../models/user.interface';
+import { UserFieldType } from '../../models/user.interface';
 
 type likeListType = {
 	_id: string;
-	userId: userFieldType;
+	userId: UserFieldType;
 	createdAt: string;
 }[];
 

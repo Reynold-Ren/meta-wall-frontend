@@ -3,10 +3,10 @@ import Filters from '../../components/Filters';
 import Empty from '../../components/Empty';
 import Post from '../../components/Post';
 import { Posts } from '../../apis/apis';
-import { FetchPostsType } from '../../models/post.interface';
+import { PostResponseType } from '../../models/post.interface';
 
 const Dashboard = () => {
-	const [posts, setPosts] = useState<FetchPostsType>([]);
+	const [posts, setPosts] = useState<PostResponseType[]>([]);
 
 	useEffect(() => {
 		const fetchPosts = async () => {

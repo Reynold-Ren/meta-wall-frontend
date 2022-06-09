@@ -15,6 +15,7 @@ import {
 import {
 	CreatePostParams,
 	PostResponseType,
+	CreatePostResponseType,
 	FetchPostsResponseType,
 	LikesParamsType,
 	getOneParamsType,
@@ -61,7 +62,7 @@ export const User = {
 };
 
 export const Posts = {
-	create: (params: CreatePostParams): Promise<PostResponseType> =>
+	create: (params: CreatePostParams): Promise<CreatePostResponseType> =>
 		request.post('/posts/create', params, getAuth(useLocalStorage.getToken())),
 	getAll: (): Promise<FetchPostsResponseType> => request.get('/posts/', getAuth(useLocalStorage.getToken())),
 	getOne: (params: getOneParamsType): Promise<FetchOnePostResponseType> =>

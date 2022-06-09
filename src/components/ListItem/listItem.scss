@@ -43,7 +43,7 @@
 	.likesAddOnContainer {
 		@include rowVertically();
 		align-self: center;
-		> * {
+		.cancleLikeBtn, .getPostDetailBtn {
 			@include columnVertically();
 			cursor: pointer;
 		}
@@ -54,6 +54,7 @@
 			display: inline-block;
 			font-size: $font-s;
 			font-weight: bold;
+			color: $black;
 			margin-top: 4px;
 		}
 		.cancleLikeBtn {

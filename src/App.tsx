@@ -1,3 +1,6 @@
+import './App.scss';
+import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/auth';
 import AppContainer from './views/AppContainer';
 import Login from './views/Login';
 import Dashboard from './views/Dashboard';
@@ -7,11 +10,9 @@ import Likes from './views/Likes';
 import User from './views/User';
 import Shop from './views/Shop';
 import CreatePosts from './views/CreatePosts';
-import './App.scss';
-import { Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/auth';
 import RequireAuth from './components/RequireAuth';
 import SocialLogin from './components/SocialLogin';
+import SinglePost from './views/SinglePost';
 
 function App() {
 	return (
@@ -74,6 +75,14 @@ function App() {
 						element={
 							<RequireAuth>
 								<Shop />
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="post/:id"
+						element={
+							<RequireAuth>
+								<SinglePost />
 							</RequireAuth>
 						}
 					/>

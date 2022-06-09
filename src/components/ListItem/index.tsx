@@ -2,18 +2,18 @@ import './listItem.scss';
 import FollowsAddOn from './FollowsAddOn';
 import LikesAddOn from './LikesAddOn';
 import defaultAvatar from '../../assets/user_default.png';
-import { userFieldType } from '../../models/user.interface';
+import { UserFieldType } from '../../models/user.interface';
 import moment from 'moment';
 
 type FollowItem = {
-	user: userFieldType;
+	user: UserFieldType;
 	createdAt: string;
 	[key: string]: any;
 };
 
 type LikeItem = {
 	_id?: string;
-	userId: userFieldType;
+	userId: UserFieldType;
 	createdAt: string;
 	[key: string]: any;
 };

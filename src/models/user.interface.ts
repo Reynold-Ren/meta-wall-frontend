@@ -1,6 +1,6 @@
 import { CommonResponseType } from './basic.interface';
 
-export interface userFieldType {
+export interface UserFieldType {
 	_id: string;
 	name: string;
 	gender?: string;
@@ -50,7 +50,7 @@ export interface EditProfileResponseType extends CommonResponseType {
 export interface LikeListResponseType extends CommonResponseType {
 	data: {
 		_id: string;
-		userId: userFieldType;
+		userId: UserFieldType;
 		createdAt: string;
 	}[];
 }
@@ -58,7 +58,7 @@ export interface LikeListResponseType extends CommonResponseType {
 export interface FollowListResponseType extends CommonResponseType {
 	data: {
 		following: {
-			user: userFieldType;
+			user: UserFieldType;
 			createdAt: string;
 		}[];
 	}[];

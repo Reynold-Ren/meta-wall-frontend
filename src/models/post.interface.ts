@@ -1,42 +1,36 @@
 import { CommonResponseType } from './basic.interface';
-import { userFieldType } from './user.interface';
+import { UserFieldType } from './user.interface';
+import { CommentType } from './comment.interface';
 
 export interface CreatePostParams {
 	content: string;
 	image?: string;
 }
 
-export interface PostResponseType extends CommonResponseType {
+export interface CreatePostResponseType extends CommonResponseType {
 	data: {
-		_id: string;
-		name: string;
+		id: string;
 		content: string;
 		image: string;
-		likes?: string[];
-		createdAt?: string;
 	};
 }
 
-export interface FetchOnePostResponseType extends CommonResponseType {
-	data: {
-		userId: userFieldType;
-		content: string;
-		image: string;
-		likes?: string[];
-		createdAt?: string;
-	};
-}
-
-export type FetchPostsType = Array<{
+export interface PostResponseType {
 	_id: string;
-	name: string;
+	userId: UserFieldType;
 	content: string;
 	image: string;
 	likes: string[];
-}>;
+	createdAt: string;
+	comments: CommentType;
+}
+
+export interface FetchOnePostResponseType extends CommonResponseType {
+	data: PostResponseType;
+}
 
 export interface FetchPostsResponseType extends CommonResponseType {
-	data: FetchPostsType;
+	data: PostResponseType[];
 }
 
 export type LikesParamsType = {

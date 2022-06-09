@@ -5,23 +5,20 @@ import Comments from './Comments';
 import defaultAvatar from '../../assets/user_default.png';
 import { Posts } from '../../apis/apis';
 import { useAuthContext } from '../../context/auth';
+import { PostResponseType } from '../../models/post.interface';
+import moment from 'moment';
 
-type PostProps = {
-	post: {
-		_id: string;
-		name: string;
-		content: string;
-		image: string;
-		likes: string[];
-	};
-};
+interface PostPropsType {
+	post: PostResponseType;
+}
 
-const Post = ({ post }: PostProps) => {
+const Post = ({ post }: PostPropsType) => {
 	const [isLiked, setLike] = useState<boolean>(null!);
 	const [likesLength, setLikesLength] = useState<number>(0);
 	const [likeList, setLikeList] = useState<string[]>([]);
 	const { user } = useAuthContext();
-	const { _id, name, image, content, likes } = post;
+	const { _id, image, content, likes, createdAt } = post;
+	const { name, avatar } = post.userId;
 
 	useEffect(() => {
 		likes.includes(user.id) ? setLike(true) : setLike(false);
@@ -47,15 +44,20 @@ const Post = ({ post }: PostProps) => {
 		}
 	};
 
+	const timeFormat = (createdTime: string) => {
+		const theDay = moment(createdTime);
+		return theDay.format('YYYY-MM-DD HH:mm');
+	};
+
 	return (
 		<div className="postContainer">
 			<div className="postContainer__header">
 				<div className="postContainer__header-avatar">
-					<img src={defaultAvatar} alt="" />
+					<img src={avatar !== '' ? avatar : defaultAvatar} alt="" />
 				</div>
 				<div className="postContainer__header-info">
 					<h3>{name}</h3>
-					<span>2022/1/10 12:00</span>
+					<span>{timeFormat(createdAt)}</span>
 				</div>
 			</div>
 			<div className="postContainer__body">

@@ -1,6 +1,7 @@
 import { FiArrowRightCircle } from 'react-icons/fi';
 import { BiLike } from 'react-icons/bi';
 import { Posts } from '../../apis/apis';
+import { Link } from 'react-router-dom';
 
 type LikesAddOnProps = {
 	postId: string;
@@ -20,10 +21,12 @@ const LikesAddOn = ({ postId, remove }: LikesAddOnProps) => {
 				<BiLike />
 				<span>取消</span>
 			</div>
-			<div className="getPostDetailBtn">
-				<FiArrowRightCircle />
-				<span>查看</span>
-			</div>
+			<Link to={`/post/${postId}`}>
+				<div className="getPostDetailBtn">
+					<FiArrowRightCircle />
+					<span>查看</span>
+				</div>
+			</Link>
 		</div>
 	);
 };

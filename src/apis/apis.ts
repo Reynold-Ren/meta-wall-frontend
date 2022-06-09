@@ -28,6 +28,15 @@ const getAuth = (token: string): object => ({
 	headers: { Authorization: `Bearer ${token}` },
 });
 
+const paramsToQuery = (params: { [key: string]: any } = {}) => {
+	if (Object.keys(params).length !== 0) {
+		return Object.keys(params)
+			.map((key) => key + '=' + params[key])
+			.join('&');
+	}
+	return '';
+};
+
 const responseBody = (response: AxiosResponse) => response.data;
 const errorBody = (error: AxiosError) => error.response?.data;
 
@@ -65,7 +74,8 @@ export const User = {
 export const Posts = {
 	create: (params: CreatePostParams): Promise<CreatePostResponseType> =>
 		request.post('/posts/create', params, getAuth(useLocalStorage.getToken())),
-	getAll: (): Promise<FetchPostsResponseType> => request.get('/posts/', getAuth(useLocalStorage.getToken())),
+	getAll: (params?: { [key: string]: any }): Promise<FetchPostsResponseType> =>
+		request.get(`/posts?${paramsToQuery(params)}`, getAuth(useLocalStorage.getToken())),
 	getOne: (params: getOneParamsType): Promise<FetchOnePostResponseType> =>
 		request.get(`/posts/${params.id}`, getAuth(useLocalStorage.getToken())),
 	addLike: (params: LikesParamsType): Promise<CommonResponseType> =>

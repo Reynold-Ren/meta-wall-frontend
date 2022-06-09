@@ -8,7 +8,7 @@ import { LoginContext } from '../../context/login';
 import { useLocalStorage } from '../../helpers/useLocalSotrage';
 import { useAuthContext } from '../../context/auth';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { LocationProps } from '../../models/reack-router-interface';
+import { LocationProps } from '../../models/react-router-interface';
 import { FaLine } from 'react-icons/fa';
 import { AiFillGoogleSquare } from 'react-icons/ai';
 import { IoLogoFacebook } from 'react-icons/io';

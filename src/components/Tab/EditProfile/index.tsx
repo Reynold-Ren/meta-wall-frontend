@@ -9,7 +9,7 @@ import { useAuthContext } from '../../../context/auth';
 import { useLocalStorage } from '../../../helpers/useLocalSotrage';
 
 interface IFormValues {
-	photo: string;
+	avatar: string;
 	name: string;
 	gender: 'male' | 'female' | 'x';
 }
@@ -29,17 +29,17 @@ const EditProfile = () => {
 
 	useEffect(() => {
 		setValue('name', user.name);
-		if (user.photo !== '') {
-			setAvatar(user.photo);
+		if (user.avatar !== '') {
+			setAvatar(user.avatar);
 		}
 	}, []);
 
 	const onSubmit: SubmitHandler<IFormValues> = async (data) => {
-		const { name, gender, photo = '' } = data;
-		const result = await User.editProfile({ name, gender, photo });
+		const { name, gender, avatar = '' } = data;
+		const result = await User.editProfile({ name, gender, avatar });
 		if (result.status) {
-			setUser({ ...user, name, photo });
-			useLocalStorage.updateUser({ name, photo });
+			setUser({ ...user, name, avatar });
+			useLocalStorage.updateUser({ name, avatar });
 		} else {
 			setError(true);
 			setErrorMessage(result.message);
@@ -52,7 +52,7 @@ const EditProfile = () => {
 		if (status) {
 			setImageUrl(msg);
 			setAvatar(msg);
-			setValue('photo', msg);
+			setValue('avatar', msg);
 		} else {
 			setError(true);
 			setErrorMessage(msg);

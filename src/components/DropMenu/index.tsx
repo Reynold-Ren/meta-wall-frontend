@@ -19,7 +19,7 @@ const DropMenu = () => {
 			onMouseLeave={() => setDropMenuShow(false)}
 		>
 			<div className="dropmenuContainer__avatar">
-				<img src={user.photo === '' ? defaultAvatar : user.photo} alt="" />
+				<img src={user.avatar !== '' ? user.avatar : defaultAvatar} alt="" />
 			</div>
 			<div className="dropmenuContainer__role">Member</div>
 			<CSSTransition in={isDropMenuShow} timeout={2000} classNames="dropmenu" nodeRef={nodeRef} unmountOnExit>

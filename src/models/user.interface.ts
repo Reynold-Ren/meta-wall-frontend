@@ -25,7 +25,7 @@ export interface ResetPasswordParams {
 export interface EditProfileParams {
 	name: string;
 	gender: string;
-	photo: string;
+	avatar: string;
 }
 
 export interface LoginResponseType extends CommonResponseType {
@@ -34,7 +34,7 @@ export interface LoginResponseType extends CommonResponseType {
 		user: {
 			id?: string;
 			name?: string;
-			photo: string;
+			avatar: string;
 		};
 	};
 }
@@ -42,7 +42,7 @@ export interface LoginResponseType extends CommonResponseType {
 export interface EditProfileResponseType extends CommonResponseType {
 	data: {
 		name: string;
-		photo: string;
+		avatar: string;
 		gender: 'male' | 'female' | 'x';
 	};
 }

@@ -17,10 +17,10 @@ const SocialLogin = ({ children }: { children: JSX.Element }) => {
 		setUser({
 			id,
 			name,
-			photo: avatar,
+			avatar,
 		});
 
-		useLocalStorage.setUser(JSON.stringify({ id, name, photo: avatar }));
+		useLocalStorage.setUser(JSON.stringify({ id, name, avatar }));
 		useLocalStorage.setToken(token);
 	}
 

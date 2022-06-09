@@ -21,13 +21,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const signin = async (params: LoginParams, successCallback: VoidFunction, failedCallback: (msg: string) => void) => {
 		const result = await User.login(params);
 		if (result.data?.token) {
-			const { id, name, photo } = result.data.user;
-			useLocalStorage.setUser(JSON.stringify({ id, name, photo }));
+			const { id, name, avatar } = result.data.user;
+			useLocalStorage.setUser(JSON.stringify({ id, name, avatar }));
 			useLocalStorage.setToken(result.data.token);
 			setUser({
 				id,
 				name,
-				photo,
+				avatar,
 			});
 			successCallback();
 		} else {
@@ -42,13 +42,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	) => {
 		const result = await User.register(params);
 		if (result.data?.token) {
-			const { id, name, photo } = result.data.user;
-			useLocalStorage.setUser(JSON.stringify({ id, name, photo }));
+			const { id, name, avatar } = result.data.user;
+			useLocalStorage.setUser(JSON.stringify({ id, name, avatar }));
 			useLocalStorage.setToken(result.data.token);
 			setUser({
 				id,
 				name,
-				photo,
+				avatar,
 			});
 			successCallback();
 		} else {

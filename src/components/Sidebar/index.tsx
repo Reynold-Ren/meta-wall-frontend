@@ -12,7 +12,7 @@ const Sidebar = () => {
 		navigate('/create');
 	};
 	const { user } = useAuthContext();
-	const avatar = user.photo ? user.photo : defaultAvatar;
+	const avatar = user.avatar !== '' ? user.avatar : defaultAvatar;
 	return (
 		<div className="sidebarContainer">
 			<Button wording="張貼動態" style="primary" handleClick={handleCreatePostBtnClick}></Button>

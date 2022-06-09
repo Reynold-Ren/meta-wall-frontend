@@ -1,5 +1,12 @@
 import { CommonResponseType } from './basic.interface';
 
+export interface userFieldType {
+	_id: string;
+	name: string;
+	gender?: string;
+	avatar: string;
+}
+
 export interface LoginParams {
 	email: string;
 	password: string;
@@ -40,16 +47,19 @@ export interface EditProfileResponseType extends CommonResponseType {
 	};
 }
 
-export type LikesType = {
-	_id: string;
-	name: string;
-	photo: string;
-};
-
 export interface LikeListResponseType extends CommonResponseType {
 	data: {
 		_id: string;
-		userId: LikesType;
+		userId: userFieldType;
 		createdAt: string;
+	}[];
+}
+
+export interface FollowListResponseType extends CommonResponseType {
+	data: {
+		following: {
+			user: userFieldType;
+			createdAt: string;
+		}[];
 	}[];
 }

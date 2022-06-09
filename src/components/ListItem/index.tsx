@@ -2,36 +2,54 @@ import './listItem.scss';
 import FollowsAddOn from './FollowsAddOn';
 import LikesAddOn from './LikesAddOn';
 import defaultAvatar from '../../assets/user_default.png';
-import { LikesType } from '../../models/user.interface';
+import { userFieldType } from '../../models/user.interface';
+import moment from 'moment';
 
-type ListItemProps = {
-	type?: 'follows' | 'likes';
-	data?: LikesType;
+type FollowItem = {
+	user: userFieldType;
+	createdAt: string;
+	[key: string]: any;
 };
 
-const ListItem = ({
-	type = 'follows',
-	data = {
-		_id: '123',
-		name: '波吉',
-		photo: 'https://i.imgur.com/StYpshR.png',
-	},
-}: ListItemProps) => {
-	const { name, photo } = data;
-	// const avatar = () => {
-	// };
+type LikeItem = {
+	_id?: string;
+	userId: userFieldType;
+	createdAt: string;
+	[key: string]: any;
+};
+
+type ListItemProps = {
+	type: 'follows' | 'likes';
+	data: FollowItem | LikeItem;
+	remove?: (id: string) => void;
+};
+
+const ListItem = ({ type, data, remove }: ListItemProps) => {
+	const userKey = type === 'follows' ? 'user' : 'userId';
+	const { avatar, name } = data[userKey];
+	const { createdAt } = data;
+
+	const timeFormat = (createdTime: string) => {
+		const theDay = moment(createdTime);
+		return theDay.format('YYYY-MM-DD HH:mm');
+	};
+
 	return (
 		<div className="listItemContainer">
 			<div className="listItemContainer__info">
 				<div className="listItemContainer__info-avatar">
-					<img src={photo === '' ? defaultAvatar : photo} alt="" />
+					<img src={avatar === '' ? defaultAvatar : avatar} alt="" />
 				</div>
 				<div className="listItemContainer__info-detail">
 					<h3>{name}</h3>
-					<p>{type == 'follows' ? '追蹤' : '發文'}時間：2022/1/10 12:00</p>
+					<p>
+						{type == 'follows' ? '追蹤' : '發文'}時間：{timeFormat(createdAt)}
+					</p>
 				</div>
 			</div>
-			<div className="listItemContainer__tools">{type == 'follows' ? <FollowsAddOn /> : <LikesAddOn />}</div>
+			<div className="listItemContainer__tools">
+				{type == 'follows' ? <FollowsAddOn time={createdAt} /> : <LikesAddOn postId={data._id} remove={remove!} />}
+			</div>
 		</div>
 	);
 };

@@ -23,7 +23,7 @@ const Dashboard = () => {
 	return (
 		<div>
 			<Filters />
-			{posts.length === 0 ? <Empty /> : posts.map((post) => <Post key={post._id} post={post} />)}
+			{posts.length === 0 ? <Empty type="POSTS" /> : posts.map((post) => <Post key={post._id} post={post} />)}
 		</div>
 	);
 };

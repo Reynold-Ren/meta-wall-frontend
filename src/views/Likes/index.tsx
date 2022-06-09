@@ -3,30 +3,40 @@ import Title from '../../components/Title';
 import ListItem from '../../components/ListItem';
 import Empty from '../../components/Empty';
 import { User } from '../../apis/apis';
-import { LikesType } from '../../models/user.interface';
+import { userFieldType } from '../../models/user.interface';
 
-type LikesList = {
+type likeListType = {
 	_id: string;
-	userId: LikesType;
+	userId: userFieldType;
 	createdAt: string;
-};
+}[];
 
 const Likes = () => {
-	const [likeList, setLikeList] = useState<LikesList[]>([]);
+	const [likeList, setLikeList] = useState<likeListType>([]);
 	useEffect(() => {
 		const fetchLikeList = async () => {
 			const result = await User.getLikesList();
-			result.status ? setLikeList(result.data) : null;
+			result.status ? setLikeList(result.data) : [];
 		};
 
 		fetchLikeList();
 	}, []);
+
+	const removeSpecificPostFromLists = (id: string) => {
+		const copyArr = Array.from(likeList);
+		setLikeList(copyArr.filter((item) => item._id !== id));
+	};
+
 	return (
 		<div>
 			<Title wording="我按讚的貼文" />
-			{likeList.map((likePost) => (
-				<ListItem key={likePost._id} type="likes" data={likePost.userId} />
-			))}
+			{likeList.length !== 0 ? (
+				likeList.map((likePost) => (
+					<ListItem key={likePost._id} type="likes" remove={removeSpecificPostFromLists} data={likePost} />
+				))
+			) : (
+				<Empty type="LIKES" />
+			)}
 		</div>
 	);
 };

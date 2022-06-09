@@ -10,8 +10,16 @@ import {
 	EditProfileParams,
 	EditProfileResponseType,
 	LikeListResponseType,
+	FollowListResponseType,
 } from '../models/user.interface';
-import { CreatePostParams, PostResponseType, FetchPostsResponseType, LikesParamsType } from '../models/post.interface';
+import {
+	CreatePostParams,
+	PostResponseType,
+	FetchPostsResponseType,
+	LikesParamsType,
+	getOneParamsType,
+	FetchOnePostResponseType,
+} from '../models/post.interface';
 import { OrderResponseType, CreateOrderParams } from '../models/order.interface';
 
 const getAuth = (token: string): object => ({
@@ -47,13 +55,17 @@ export const User = {
 	editProfile: (params: EditProfileParams): Promise<EditProfileResponseType> =>
 		request.patch('/user/profile', params, getAuth(useLocalStorage.getToken())),
 	getLikesList: (): Promise<LikeListResponseType> =>
-		request.get('user/getLikesList/', getAuth(useLocalStorage.getToken())),
+		request.get('/user/getLikesList/', getAuth(useLocalStorage.getToken())),
+	getFollowList: (): Promise<FollowListResponseType> =>
+		request.get('/user/getFollowList/', getAuth(useLocalStorage.getToken())),
 };
 
 export const Posts = {
 	create: (params: CreatePostParams): Promise<PostResponseType> =>
 		request.post('/posts/create', params, getAuth(useLocalStorage.getToken())),
 	getAll: (): Promise<FetchPostsResponseType> => request.get('/posts/', getAuth(useLocalStorage.getToken())),
+	getOne: (params: getOneParamsType): Promise<FetchOnePostResponseType> =>
+		request.get(`/posts/${params.id}`, getAuth(useLocalStorage.getToken())),
 	addLike: (params: LikesParamsType): Promise<CommonResponseType> =>
 		request.post(`/posts/${params._id}/likes`, params, getAuth(useLocalStorage.getToken())),
 	unLike: (params: LikesParamsType): Promise<CommonResponseType> =>

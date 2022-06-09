@@ -17,7 +17,7 @@ const Post = ({ post }: PostPropsType) => {
 	const [likesLength, setLikesLength] = useState<number>(0);
 	const [likeList, setLikeList] = useState<string[]>([]);
 	const { user } = useAuthContext();
-	const { _id, image, content, likes, createdAt } = post;
+	const { _id, image, content, likes, createdAt, comments } = post;
 	const { name, avatar } = post.userId;
 
 	useEffect(() => {
@@ -70,7 +70,7 @@ const Post = ({ post }: PostPropsType) => {
 				<Likes likesNum={likesLength} handleClickLikes={handleClickLikes} isLiked={isLiked} />
 			</div>
 			<div className="postContainer__footer">
-				<Comments />
+				<Comments data={comments} postID={_id} />
 			</div>
 		</div>
 	);

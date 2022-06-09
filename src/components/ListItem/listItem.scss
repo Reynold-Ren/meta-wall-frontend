@@ -43,7 +43,8 @@
 	.likesAddOnContainer {
 		@include rowVertically();
 		align-self: center;
-		.cancleLikeBtn, .getPostDetailBtn {
+		.cancleLikeBtn,
+		.getPostDetailBtn {
 			@include columnVertically();
 			cursor: pointer;
 		}

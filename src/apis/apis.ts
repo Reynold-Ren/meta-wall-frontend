@@ -22,6 +22,7 @@ import {
 	FetchOnePostResponseType,
 } from '../models/post.interface';
 import { OrderResponseType, CreateOrderParams } from '../models/order.interface';
+import { CreateCommentParams, CommentResponseType } from '../models/comment.interface';
 
 const getAuth = (token: string): object => ({
 	headers: { Authorization: `Bearer ${token}` },
@@ -71,6 +72,11 @@ export const Posts = {
 		request.post(`/posts/${params._id}/likes`, params, getAuth(useLocalStorage.getToken())),
 	unLike: (params: LikesParamsType): Promise<CommonResponseType> =>
 		request.delete(`/posts/${params._id}/likes`, params, getAuth(useLocalStorage.getToken())),
+};
+
+export const Comment = {
+	create: (params: CreateCommentParams): Promise<CommentResponseType> =>
+		request.post(`/posts/${params.postID}/comment`, { comment: params.comment }, getAuth(useLocalStorage.getToken())),
 };
 
 export const Order = {

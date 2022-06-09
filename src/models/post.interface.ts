@@ -22,7 +22,7 @@ export interface PostResponseType {
 	image: string;
 	likes: string[];
 	createdAt: string;
-	comments: CommentType;
+	comments: CommentType[];
 }
 
 export interface FetchOnePostResponseType extends CommonResponseType {

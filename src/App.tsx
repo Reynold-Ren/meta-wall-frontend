@@ -13,6 +13,8 @@ import CreatePosts from './views/CreatePosts';
 import RequireAuth from './components/RequireAuth';
 import SocialLogin from './components/SocialLogin';
 import SinglePost from './views/SinglePost';
+import DonateHistory from './views/DonateHistory';
+import AddValueHistory from './views/AddValueHistory';
 
 function App() {
 	return (
@@ -83,6 +85,22 @@ function App() {
 						element={
 							<RequireAuth>
 								<SinglePost />
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="addValue-history"
+						element={
+							<RequireAuth>
+								<AddValueHistory />
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="donate-history"
+						element={
+							<RequireAuth>
+								<DonateHistory />
 							</RequireAuth>
 						}
 					/>

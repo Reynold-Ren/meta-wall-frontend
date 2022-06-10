@@ -4,4 +4,6 @@ export const EMPTY_WORDING: { [key: string]: string } = {
 	LIKES: '目前尚無按讚的貼文，快去找喜歡的文章吧！',
 	FOLLOWS: '目前尚無追蹤任何人，快去追蹤喜歡的作者吧！',
 	USER: '該使用者目前無任何文章',
+	PAYMENTS: '目前尚無購買紀錄',
+	DONATES: '目前尚無贊助任何作者',
 };

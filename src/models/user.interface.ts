@@ -6,6 +6,7 @@ export interface UserFieldType {
 	name: string;
 	gender?: string;
 	avatar: string;
+	coin: number;
 }
 
 export interface LoginParams {

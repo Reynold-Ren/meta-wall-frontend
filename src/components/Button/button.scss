@@ -54,4 +54,17 @@
 	&.isUnFollow {
 		background-color: $brown;
 	}
+	&.isUnDonate.btnContainer {
+		font-size: $font-xl;
+		padding-top: 12px;
+		padding-bottom: 12px;
+		margin-bottom: 32px;
+		background-color: $gray-300;
+		color: $gray-500;
+	}
+	&.isDonate {
+		font-size: $font-xl;
+		padding-top: 12px;
+		padding-bottom: 12px;
+	}
 }

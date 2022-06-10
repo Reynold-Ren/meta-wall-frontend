@@ -1,6 +1,7 @@
 import './listItem.scss';
 import FollowsAddOn from './FollowsAddOn';
 import LikesAddOn from './LikesAddOn';
+import DonateAddOn from './DonateAddOn';
 import defaultAvatar from '../../assets/user_default.png';
 import { UserFieldType } from '../../models/user.interface';
 import { useNavigate } from 'react-router-dom';
@@ -19,14 +20,56 @@ type LikeItem = {
 	[key: string]: any;
 };
 
+type DonateItem = {
+	_id: string;
+	donatee: UserFieldType;
+	donateNum: number;
+	createdAt: string;
+	[key: string]: any;
+};
+
 type ListItemProps = {
-	type: 'follows' | 'likes';
-	data: FollowItem | LikeItem;
+	type: 'follows' | 'likes' | 'donate';
+	data: FollowItem | LikeItem | DonateItem;
 	remove?: (id: string) => void;
 };
 
 const ListItem = ({ type, data, remove }: ListItemProps) => {
-	const userKey = type === 'follows' ? 'user' : 'userId';
+	const generateUserKey = () => {
+		switch (type) {
+			case 'follows':
+				return 'user';
+			case 'likes':
+				return 'userId';
+			case 'donate':
+				return 'donatee';
+			default:
+				return 'user';
+		}
+	};
+	const generateTimeWording = () => {
+		switch (type) {
+			case 'follows':
+				return '追隨';
+			case 'likes':
+				return '發文';
+			case 'donate':
+				return '贊助';
+			default:
+				return '追隨';
+		}
+	};
+	const generateAddOns = () => {
+		switch (type) {
+			case 'follows':
+				return <FollowsAddOn time={createdAt} />;
+			case 'likes':
+				return <LikesAddOn postId={data._id} remove={remove!} />;
+			case 'donate':
+				return <DonateAddOn coinNum={data.donateNum} />;
+		}
+	};
+	const userKey = generateUserKey();
 	const { avatar, name, _id } = data[userKey];
 	const { createdAt } = data;
 	const navigate = useNavigate();
@@ -49,13 +92,11 @@ const ListItem = ({ type, data, remove }: ListItemProps) => {
 				<div className="listItemContainer__info-detail">
 					<h3>{name}</h3>
 					<p>
-						{type == 'follows' ? '追蹤' : '發文'}時間：{timeFormat(createdAt)}
+						{generateTimeWording()}時間：{timeFormat(createdAt)}
 					</p>
 				</div>
 			</div>
-			<div className="listItemContainer__tools">
-				{type == 'follows' ? <FollowsAddOn time={createdAt} /> : <LikesAddOn postId={data._id} remove={remove!} />}
-			</div>
+			<div className="listItemContainer__tools">{generateAddOns()}</div>
 		</div>
 	);
 };

@@ -23,8 +23,9 @@ import {
 	getOneParamsType,
 	FetchOnePostResponseType,
 } from '../models/post.interface';
-import { OrderResponseType, CreateOrderParams } from '../models/order.interface';
+import { OrderResponseType, CreateOrderParams, FetchAddValueListResponseType } from '../models/order.interface';
 import { CreateCommentParams, CommentResponseType } from '../models/comment.interface';
+import { DonateUserParams, FetchDonateListResponseType } from '../models/donate.interface';
 
 const getAuth = (token: string): object => ({
 	headers: { Authorization: `Bearer ${token}` },
@@ -100,6 +101,19 @@ export const Comment = {
 export const Order = {
 	create: (params: CreateOrderParams): Promise<OrderResponseType> =>
 		request.post('/donate/', params, getAuth(useLocalStorage.getToken())),
+	fetchAddValueHisory: (): Promise<FetchAddValueListResponseType> =>
+		request.post('/donate/paymant-history', {}, getAuth(useLocalStorage.getToken())),
+};
+
+export const Donate = {
+	user: (params: DonateUserParams): Promise<CommonResponseType> =>
+		request.post(
+			`/donate/user/${params.authorUserID}`,
+			{ coinNum: params.coinNum },
+			getAuth(useLocalStorage.getToken()),
+		),
+	fetchDonateHisory: (): Promise<FetchDonateListResponseType> =>
+		request.post('/donate/donate-history', {}, getAuth(useLocalStorage.getToken())),
 };
 
 export const upload = (params: any): Promise<CommonResponseType> =>

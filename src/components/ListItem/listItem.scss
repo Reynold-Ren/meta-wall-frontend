@@ -72,4 +72,19 @@
 			}
 		}
 	}
+
+	.donateAddOnContainer {
+		display: flex;
+		align-items: center;
+		margin-right: 16px;
+		color: $black;
+		font-size: $font-xl;
+		font-weight: bold;
+		span {
+			display: inline-block;
+			font-size: $font-m;
+			font-weight: normal;
+			padding-left: 8px;
+		}
+	}
 }

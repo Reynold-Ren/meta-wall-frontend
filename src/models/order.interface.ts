@@ -15,3 +15,15 @@ export interface CreateOrderParams {
 	amt: number;
 	desc: string;
 }
+
+export interface FetchAddValueListResponseType extends CommonResponseType {
+	data: {
+		_id: string;
+		tradeNo: string;
+		amt: number;
+		paymentType: string;
+		payTime: number;
+		IP: string;
+		payment_status: number;
+	}[];
+}

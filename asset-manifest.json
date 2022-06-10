@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/github.io/meta-wall-frontend/static/css/main.5708e6d2.css",
-    "main.js": "/github.io/meta-wall-frontend/static/js/main.e6182d8b.js",
-    "static/js/787.22bf90ca.chunk.js": "/github.io/meta-wall-frontend/static/js/787.22bf90ca.chunk.js",
-    "static/media/illustration.svg": "/github.io/meta-wall-frontend/static/media/illustration.b7a8f5410566dc51939f432215db6ea6.svg",
-    "static/media/user_default.png": "/github.io/meta-wall-frontend/static/media/user_default.ae23420c733cea0baf96.png",
-    "static/media/logo.png": "/github.io/meta-wall-frontend/static/media/logo.9243175a81ea419792bc.png",
-    "static/media/logo.svg": "/github.io/meta-wall-frontend/static/media/logo.07c0ab467ca4b1d029d36b409ef80680.svg",
-    "static/media/banknotesIcon.svg": "/github.io/meta-wall-frontend/static/media/banknotesIcon.47dc67ebd6b4529f8cbc587f89c2557c.svg",
-    "static/media/coinIcon.svg": "/github.io/meta-wall-frontend/static/media/coinIcon.5c913688c9edded88705fb2275393132.svg",
-    "static/media/moneybagIcon.svg": "/github.io/meta-wall-frontend/static/media/moneybagIcon.82eafc019047fc846019fb40c5bfe863.svg",
-    "static/media/diamondIcon.svg": "/github.io/meta-wall-frontend/static/media/diamondIcon.907e733c2eedd3d3a9284872212dfebb.svg",
-    "index.html": "/github.io/meta-wall-frontend/index.html",
-    "static/media/arrow.svg": "/github.io/meta-wall-frontend/static/media/arrow.49bd1de7e0bffb7989df.svg",
-    "main.5708e6d2.css.map": "/github.io/meta-wall-frontend/static/css/main.5708e6d2.css.map",
-    "main.e6182d8b.js.map": "/github.io/meta-wall-frontend/static/js/main.e6182d8b.js.map",
-    "787.22bf90ca.chunk.js.map": "/github.io/meta-wall-frontend/static/js/787.22bf90ca.chunk.js.map"
+    "main.css": "/meta-wall-frontend/static/css/main.ff8cfbfe.css",
+    "main.js": "/meta-wall-frontend/static/js/main.be7be111.js",
+    "static/js/787.22bf90ca.chunk.js": "/meta-wall-frontend/static/js/787.22bf90ca.chunk.js",
+    "static/media/illustration.svg": "/meta-wall-frontend/static/media/illustration.b7a8f5410566dc51939f432215db6ea6.svg",
+    "static/media/user_default.png": "/meta-wall-frontend/static/media/user_default.ae23420c733cea0baf96.png",
+    "static/media/logo.png": "/meta-wall-frontend/static/media/logo.9243175a81ea419792bc.png",
+    "static/media/logo.svg": "/meta-wall-frontend/static/media/logo.07c0ab467ca4b1d029d36b409ef80680.svg",
+    "static/media/banknotesIcon.svg": "/meta-wall-frontend/static/media/banknotesIcon.47dc67ebd6b4529f8cbc587f89c2557c.svg",
+    "static/media/coinIcon.svg": "/meta-wall-frontend/static/media/coinIcon.5c913688c9edded88705fb2275393132.svg",
+    "static/media/moneybagIcon.svg": "/meta-wall-frontend/static/media/moneybagIcon.82eafc019047fc846019fb40c5bfe863.svg",
+    "static/media/diamondIcon.svg": "/meta-wall-frontend/static/media/diamondIcon.907e733c2eedd3d3a9284872212dfebb.svg",
+    "index.html": "/meta-wall-frontend/index.html",
+    "static/media/arrow.svg": "/meta-wall-frontend/static/media/arrow.49bd1de7e0bffb7989df.svg",
+    "main.ff8cfbfe.css.map": "/meta-wall-frontend/static/css/main.ff8cfbfe.css.map",
+    "main.be7be111.js.map": "/meta-wall-frontend/static/js/main.be7be111.js.map",
+    "787.22bf90ca.chunk.js.map": "/meta-wall-frontend/static/js/787.22bf90ca.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5708e6d2.css",
-    "static/js/main.e6182d8b.js"
+    "static/css/main.ff8cfbfe.css",
+    "static/js/main.be7be111.js"
   ]
 }

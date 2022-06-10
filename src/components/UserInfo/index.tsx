@@ -26,10 +26,11 @@ Modal.setAppElement('#root');
 
 const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 	const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+	const [resultModalIsOpen, setResultModalIsOpen] = useState<boolean>(false);
 	const [isFollow, setIsFollow] = useState<boolean>(false);
 	const [follower, setFollower] = useState<FollowersType[]>([]);
 	const [donateCoinNum, setDonateCoinNum] = useState<number>(0);
-	const { _id, name, avatar, followers } = userInfo;
+	const { _id, name, avatar } = userInfo;
 	const { user } = useAuthContext();
 
 	useEffect(() => {
@@ -67,6 +68,8 @@ const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 	const handleDonateBtnOnClick = async () => {
 		const result = await Donate.user({ authorUserID: _id, coinNum: donateCoinNum });
 		if (result.status) {
+			closeModal();
+			openResultModal();
 		}
 	};
 
@@ -76,6 +79,14 @@ const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 
 	function closeModal() {
 		setIsOpen(false);
+	}
+
+	function openResultModal() {
+		setResultModalIsOpen(true);
+	}
+
+	function closeResultModal() {
+		setResultModalIsOpen(false);
 	}
 
 	return (
@@ -111,6 +122,16 @@ const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 				</div>
 				<Button wording="取消贊助" style="primary" layout="UnDonate" handleClick={closeModal} />
 				<Button wording="確認贊助" style="primary" layout="Donate" handleClick={handleDonateBtnOnClick} />
+			</Modal>
+			<Modal isOpen={resultModalIsOpen} onRequestClose={closeResultModal} style={CUSTOM_STYLES} contentLabel="Modal">
+				<div className="donateResultContainer">
+					<h3>成功贊助</h3>
+					<p>您已成功贊助了</p>
+					<p>
+						六角幣 <span>{donateCoinNum}</span> 枚
+					</p>
+					<Button wording="關閉" style="primary" handleClick={closeResultModal} />
+				</div>
 			</Modal>
 		</div>
 	);

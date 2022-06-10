@@ -1,4 +1,5 @@
 import { CommonResponseType } from './basic.interface';
+import { PostResponseType } from './post.interface';
 
 export interface UserFieldType {
 	_id: string;
@@ -26,6 +27,10 @@ export interface EditProfileParams {
 	name: string;
 	gender: string;
 	avatar: string;
+}
+
+export interface FollowUserParams {
+	id: string | undefined;
 }
 
 export interface LoginResponseType extends CommonResponseType {
@@ -62,4 +67,16 @@ export interface FollowListResponseType extends CommonResponseType {
 			createdAt: string;
 		}[];
 	}[];
+}
+
+export interface FetchSpecUserResponseType extends CommonResponseType {
+	data: {
+		user: {
+			_id: string;
+			name: string;
+			followers: [];
+			avatar: string;
+		};
+		post: PostResponseType[];
+	};
 }

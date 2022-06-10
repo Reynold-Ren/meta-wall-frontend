@@ -11,6 +11,8 @@ import {
 	EditProfileResponseType,
 	LikeListResponseType,
 	FollowListResponseType,
+	FollowUserParams,
+	FetchSpecUserResponseType,
 } from '../models/user.interface';
 import {
 	CreatePostParams,
@@ -69,6 +71,10 @@ export const User = {
 		request.get('/user/getLikesList/', getAuth(useLocalStorage.getToken())),
 	getFollowList: (): Promise<FollowListResponseType> =>
 		request.get('/user/getFollowList/', getAuth(useLocalStorage.getToken())),
+	follow: (params: FollowUserParams): Promise<CommonResponseType> =>
+		request.post(`${params.id}/follow`, {}, getAuth(useLocalStorage.getToken())),
+	unFollow: (params: FollowUserParams): Promise<CommonResponseType> =>
+		request.delete(`${params.id}/unfollow`, {}, getAuth(useLocalStorage.getToken())),
 };
 
 export const Posts = {
@@ -82,6 +88,8 @@ export const Posts = {
 		request.post(`/posts/${params._id}/likes`, params, getAuth(useLocalStorage.getToken())),
 	unLike: (params: LikesParamsType): Promise<CommonResponseType> =>
 		request.delete(`/posts/${params._id}/likes`, params, getAuth(useLocalStorage.getToken())),
+	getSpecUser: (params: getOneParamsType): Promise<FetchSpecUserResponseType> =>
+		request.get(`/user/profile/${params.id}`, getAuth(useLocalStorage.getToken())),
 };
 
 export const Comment = {

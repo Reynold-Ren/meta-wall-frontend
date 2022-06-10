@@ -6,6 +6,7 @@ import defaultAvatar from '../../assets/user_default.png';
 import { Posts } from '../../apis/apis';
 import { useAuthContext } from '../../context/auth';
 import { PostResponseType } from '../../models/post.interface';
+import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
 interface PostPropsType {
@@ -17,8 +18,9 @@ const Post = ({ post }: PostPropsType) => {
 	const [likesLength, setLikesLength] = useState<number>(0);
 	const [likeList, setLikeList] = useState<string[]>([]);
 	const { user } = useAuthContext();
+	const navigate = useNavigate();
 	const { _id, image, content, likes, createdAt, comments } = post;
-	const { name, avatar } = post.userId;
+	const { _id: authorID, name, avatar } = post.userId;
 
 	useEffect(() => {
 		likes.includes(user.id) ? setLike(true) : setLike(false);
@@ -49,9 +51,13 @@ const Post = ({ post }: PostPropsType) => {
 		return theDay.format('YYYY-MM-DD HH:mm');
 	};
 
+	const handleAuthorOnClick = () => {
+		navigate(`/user/${authorID}`);
+	};
+
 	return (
 		<div className="postContainer">
-			<div className="postContainer__header">
+			<div className="postContainer__header" onClick={handleAuthorOnClick}>
 				<div className="postContainer__header-avatar">
 					<img src={avatar !== '' ? avatar : defaultAvatar} alt="" />
 				</div>

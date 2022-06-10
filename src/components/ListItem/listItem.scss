@@ -12,6 +12,7 @@
 	margin-top: 16px;
 	&__info {
 		@include rowVertically();
+		cursor: pointer;
 		&-avatar {
 			@include avatar(46px);
 			margin-right: 16px;

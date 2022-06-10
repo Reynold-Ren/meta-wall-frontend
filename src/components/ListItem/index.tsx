@@ -3,6 +3,7 @@ import FollowsAddOn from './FollowsAddOn';
 import LikesAddOn from './LikesAddOn';
 import defaultAvatar from '../../assets/user_default.png';
 import { UserFieldType } from '../../models/user.interface';
+import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
 type FollowItem = {
@@ -26,17 +27,22 @@ type ListItemProps = {
 
 const ListItem = ({ type, data, remove }: ListItemProps) => {
 	const userKey = type === 'follows' ? 'user' : 'userId';
-	const { avatar, name } = data[userKey];
+	const { avatar, name, _id } = data[userKey];
 	const { createdAt } = data;
+	const navigate = useNavigate();
 
 	const timeFormat = (createdTime: string) => {
 		const theDay = moment(createdTime);
 		return theDay.format('YYYY-MM-DD HH:mm');
 	};
 
+	const handleAuthorOnClick = () => {
+		navigate(`/user/${_id}`);
+	};
+
 	return (
 		<div className="listItemContainer">
-			<div className="listItemContainer__info">
+			<div className="listItemContainer__info" onClick={handleAuthorOnClick}>
 				<div className="listItemContainer__info-avatar">
 					<img src={avatar === '' ? defaultAvatar : avatar} alt="" />
 				</div>

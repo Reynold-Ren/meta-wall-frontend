@@ -1,20 +1,23 @@
 import './userInfo.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '../Button';
 import defaultAvatar from '../../assets/user_default.png';
 import diamondIcon from '../../assets/icon/diamondIcon.svg';
 import { User, Donate } from '../../apis/apis';
 import Modal from 'react-modal';
 import { CUSTOM_STYLES } from '../../constants/modalStyle';
+import { useAuthContext } from '../../context/auth';
+
+type FollowersType = {
+	user: string;
+	createdAt: string;
+};
 
 type UserInfoPropsType = {
 	userInfo: {
 		_id: string;
 		name: string;
-		followers: {
-			user: string;
-			createdAt: string;
-		}[];
+		followers: FollowersType[];
 		avatar: string;
 	};
 };
@@ -24,13 +27,25 @@ Modal.setAppElement('#root');
 const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 	const [modalIsOpen, setIsOpen] = useState<boolean>(false);
 	const [isFollow, setIsFollow] = useState<boolean>(false);
+	const [follower, setFollower] = useState<FollowersType[]>([]);
 	const [donateCoinNum, setDonateCoinNum] = useState<number>(0);
 	const { _id, name, avatar, followers } = userInfo;
+	const { user } = useAuthContext();
+
+	useEffect(() => {
+		setFollower(userInfo.followers);
+		if (userInfo.followers.some((follower) => follower.user === user.id)) {
+			setIsFollow(true);
+		}
+	}, [userInfo]);
 
 	const followUser = async () => {
 		const result = await User.follow({ id: _id });
 		if (result.status) {
 			setIsFollow(true);
+			const copyArr = Array.from(follower);
+			copyArr.push({ user: user.id, createdAt: '' });
+			setFollower(copyArr);
 		}
 	};
 
@@ -38,6 +53,9 @@ const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 		const result = await User.unFollow({ id: _id });
 		if (result.status) {
 			setIsFollow(false);
+			const copyArr = Array.from(follower);
+			const result = copyArr.filter((item) => item.user !== user.id);
+			setFollower(result);
 		}
 	};
 
@@ -67,7 +85,7 @@ const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 			</div>
 			<div className="userInfoContainer__detail">
 				<h3>{name}</h3>
-				<p>{followers.length} 人追蹤</p>
+				<p>{follower.length} 人追蹤</p>
 			</div>
 			<div className="userInfoContainer__addOns">
 				<div className="donateBtn" onClick={openModal}>

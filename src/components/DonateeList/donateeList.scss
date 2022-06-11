@@ -1,0 +1,56 @@
+@import '../../scss/setup';
+
+.donateeListContainer {
+	@include basicBorder();
+	width: 100%;
+	padding: 16px 26px;
+	background-color: white;
+	margin-top: 24px;
+	h2 {
+		font-size: $font-l;
+		color: $black;
+		font-weight: bold;
+		text-align: center;
+		margin-bottom: 32px;
+	}
+	.emptyWording {
+		font-size: $font-m;
+		color: $black;
+		text-align: center;
+	}
+}
+
+.donateeListItemContainer {
+	@include rowVertically();
+	justify-content: flex-start;
+	.donateeListItem {
+		&-avatar {
+			flex: 0 0 50px;
+			@include avatar(50px);
+		}
+		&-name {
+			flex-grow: 1;
+			font-size: $font-m;
+			margin-left: 16px;
+			@include dotdotdot();
+		}
+		&-coinNum {
+			@include rowVertically();
+			flex: 0 0 66px;
+			font-size: $font-m;
+			color: $black;
+			margin-left: auto;
+			span {
+				display: inline-block;
+				font-size: $font-xl;
+				font-weight: bold;
+				padding-right: 6px;
+			}
+		}
+		&-time {
+			flex: 0 0 42px;
+			margin-left: 4px;
+			color: $gray;
+		}
+	}
+}

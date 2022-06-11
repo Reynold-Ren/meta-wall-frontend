@@ -71,6 +71,7 @@ const ResetPassword = ({ token }: ResetPasswordPropsType) => {
 			</div>
 			{isError && <span className="errorMessage errorMessage-apis">{errorMessage}</span>}
 			<Button wording="重設密碼" style="primary" layout="EditProfile" disabled={checkErrors()} />
+			<Button wording="回到登入頁" handleClick={() => swtichMode('login')} style="secondry" />
 		</form>
 	);
 };

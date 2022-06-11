@@ -18,3 +18,13 @@ export interface FetchDonateListResponseType extends CommonResponseType {
 		createdAt: string;
 	}[];
 }
+
+export interface FetchDonateeListResponseType extends CommonResponseType {
+	data: {
+		_id: string;
+		userId: UserFieldType;
+		donatee: UserFieldType;
+		donateNum: number;
+		createdAt: string;
+	}[];
+}

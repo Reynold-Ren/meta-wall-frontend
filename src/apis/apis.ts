@@ -27,7 +27,11 @@ import {
 } from '../models/post.interface';
 import { OrderResponseType, CreateOrderParams, FetchAddValueListResponseType } from '../models/order.interface';
 import { CreateCommentParams, CommentResponseType } from '../models/comment.interface';
-import { DonateUserParams, FetchDonateListResponseType } from '../models/donate.interface';
+import {
+	DonateUserParams,
+	FetchDonateListResponseType,
+	FetchDonateeListResponseType,
+} from '../models/donate.interface';
 import { MessageType, SendMessageParamsType, EnterRoom, EnterRoomResponseType } from '../models/message.interface';
 
 const getAuth = (token: string): object => ({
@@ -121,7 +125,9 @@ export const Donate = {
 			getAuth(useLocalStorage.getToken()),
 		),
 	fetchDonateHisory: (): Promise<FetchDonateListResponseType> =>
-		request.post('/donate/donate-history', {}, getAuth(useLocalStorage.getToken())),
+		request.get('/donate/donate-history', getAuth(useLocalStorage.getToken())),
+	fetchDonateeHisory: (): Promise<FetchDonateeListResponseType> =>
+		request.get('/donate/donatee-history', getAuth(useLocalStorage.getToken())),
 };
 
 export const upload = (params: any): Promise<CommonResponseType> =>

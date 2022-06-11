@@ -3,6 +3,8 @@ import { useAuthContext } from '../../context/auth';
 import { FaCrown } from 'react-icons/fa';
 import classnames from 'classnames';
 import moment from 'moment';
+import defaultAvatar from '../../assets/user_default.png';
+import { useNavigate } from 'react-router-dom';
 
 moment.updateLocale('zh', {
 	relativeTime: {
@@ -24,8 +26,10 @@ moment.updateLocale('zh', {
 });
 
 const Message = ({ content, createdAt, userId }: MessageType) => {
+	const navigate = useNavigate();
 	const { user } = useAuthContext();
-	const { avatar, name, coin } = userId;
+	const { _id, avatar, name, coin } = userId;
+
 	const timeFormat = (createdTime: string) => {
 		const theDay = moment(createdTime);
 		return theDay.fromNow(true);
@@ -35,12 +39,16 @@ const Message = ({ content, createdAt, userId }: MessageType) => {
 		messageContainer: true,
 	});
 
+	const handleAvatarOnClick = (id: string) => {
+		navigate(`/user/${id}`);
+	};
+
 	return (
 		<div className={activeClass}>
-			<div className="messageContainer__avatarContainer">
+			<div className="messageContainer__avatarContainer" onClick={() => handleAvatarOnClick(_id)}>
 				{coin > 100 && <FaCrown />}
 				<div className="messageContainer__avatar">
-					<img src={avatar} alt="" />
+					<img src={avatar === '' ? defaultAvatar : avatar} alt="" />
 				</div>
 			</div>
 			<div className="messageContainer__info">

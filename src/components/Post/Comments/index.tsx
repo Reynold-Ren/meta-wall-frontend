@@ -41,6 +41,7 @@ const Comments = ({ data, postID }: CommentPropsType) => {
 				{commentsData.map((comment) => (
 					<CommentsItem
 						key={comment._id}
+						id={comment.user._id}
 						avatar={comment.user.avatar}
 						name={comment.user.name}
 						createAt={comment.createdAt}

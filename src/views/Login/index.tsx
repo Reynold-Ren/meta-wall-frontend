@@ -82,13 +82,15 @@ const Login = () => {
 						<h2>{generateTitle()}</h2>
 					</div>
 					<div className="loginContainer__form-input">{generateForm()}</div>
-					<div className="socialLoginContainer">
-						{SOCIAL_LOGIN_ITEM.map((item) => (
-							<a href={item.link} key={item.title}>
-								{item.icon}
-							</a>
-						))}
-					</div>
+					{currentMode !== 'reset' && (
+						<div className="socialLoginContainer">
+							{SOCIAL_LOGIN_ITEM.map((item) => (
+								<a href={item.link} key={item.title}>
+									{item.icon}
+								</a>
+							))}
+						</div>
+					)}
 				</div>
 			</div>
 		</LoginContext.Provider>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './appContainer.scss';
 import Header from '../Header';
 import Sidebar from '../../components/Sidebar';
+import DonateeList from '../../components/DonateeList';
 import { useAuthContext } from '../../context/auth';
 import { useLocation } from 'react-router-dom';
 
@@ -22,7 +23,12 @@ const AppContainer = (props: { children: React.ReactNode }) => {
 			{user ? (
 				<main className="appContainer__body appContainer__body-isLogin">
 					{children}
-					{isExcludeSidebar && <Sidebar />}
+					{isExcludeSidebar && (
+						<div className="asideContainer">
+							<Sidebar />
+							<DonateeList />
+						</div>
+					)}
 				</main>
 			) : (
 				<main className="appContainer__body">{children}</main>

@@ -23,3 +23,9 @@
 		width: 100%;
 	}
 }
+
+.asideContainer {
+	@include columnVertically();
+	flex: 0 0 310px;
+	max-width: 310px;
+}

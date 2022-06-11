@@ -7,6 +7,8 @@ import { RiSendPlaneLine } from 'react-icons/ri';
 import { Messages } from '../../apis/apis';
 import classnames from 'classnames';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const ChatRoom = () => {
 	const [ws, setWs] = useState<Socket | null>();
 	const [messages, setMessages] = useState<MessageType[]>([]);
@@ -19,7 +21,7 @@ const ChatRoom = () => {
 	});
 
 	useEffect(() => {
-		setWs(io('http://localhost:3000/'));
+		setWs(io(`${API_URL}`));
 		return () => {
 			ws?.disconnect();
 		};

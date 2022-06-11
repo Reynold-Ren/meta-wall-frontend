@@ -21,7 +21,7 @@ const DropMenu = () => {
 				<img src={user.avatar} alt="" />
 			</div>
 			<div className="dropmenuContainer__role">Member</div>
-			<CSSTransition in={isDropMenuShow} timeout={2000} classNames="dropmenu" nodeRef={nodeRef} unmountOnExit>
+			<CSSTransition in={isDropMenuShow} timeout={1000} classNames="dropmenu" nodeRef={nodeRef} unmountOnExit>
 				<ul className="dropmenuContainer__list" ref={nodeRef}>
 					<li className="dropmenuContainer__listItem">
 						<Link to="/">我的貼文牆</Link>

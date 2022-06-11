@@ -61,7 +61,6 @@
 .dropmenu {
 	&-enter {
 		opacity: 0;
-		transform: translateY(100%);
 	}
 	&-enter-active {
 		opacity: 1;
@@ -73,7 +72,6 @@
 	}
 	&-exit-active {
 		opacity: 0;
-		transform: translateY(100%);
 		transition: 0.3s all;
 	}
 }

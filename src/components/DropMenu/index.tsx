@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
 import './dropmenu.scss';
-import defaultAvatar from '../../assets/user_default.png';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../context/auth';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +18,7 @@ const DropMenu = () => {
 			onMouseLeave={() => setDropMenuShow(false)}
 		>
 			<div className="dropmenuContainer__avatar">
-				<img src={user.avatar !== '' ? user.avatar : defaultAvatar} alt="" />
+				<img src={user.avatar} alt="" />
 			</div>
 			<div className="dropmenuContainer__role">Member</div>
 			<CSSTransition in={isDropMenuShow} timeout={2000} classNames="dropmenu" nodeRef={nodeRef} unmountOnExit>

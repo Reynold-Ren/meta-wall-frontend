@@ -1,7 +1,6 @@
 import './comments.scss';
 import { useState } from 'react';
 import CommentsItem from '../CommentsItem';
-import defaultAvatar from '../../../assets/user_default.png';
 import { CommentType } from '../../../models/comment.interface';
 import { useAuthContext } from '../../../context/auth';
 import { Comment } from '../../../apis/apis';
@@ -15,7 +14,6 @@ const Comments = ({ data, postID }: CommentPropsType) => {
 	const [commentsData, setCommentsData] = useState<CommentType[]>(data);
 	const [commentContent, setCommentContent] = useState<string>('');
 	const { user } = useAuthContext();
-	const avatar = user.avatar !== '' ? user.avatar : defaultAvatar;
 	const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
 		setCommentContent(evt.target.value);
 	};
@@ -30,7 +28,7 @@ const Comments = ({ data, postID }: CommentPropsType) => {
 		<div className="commentsContainer">
 			<div className="commentsContainer__head">
 				<div className="commentsContainer__head__avatar">
-					<img src={avatar} alt="" />
+					<img src={user.avatar} alt="" />
 				</div>
 				<div className="commentsContainer__head__inputGroup">
 					<input type="text" value={commentContent} placeholder="請輸入留言" onChange={handleInputChange} />

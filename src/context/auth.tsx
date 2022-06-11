@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from 'react';
 import { User } from '../apis/apis';
 import { useLocalStorage } from '../helpers/useLocalSotrage';
 import { LoginParams, RegisterParams } from '../models/user.interface';
+import defaultAvatar from '../assets/user_default.png';
 
 interface AuthContextType {
 	user: any;
@@ -22,12 +23,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		const result = await User.login(params);
 		if (result.data?.token) {
 			const { id, name, avatar } = result.data.user;
-			useLocalStorage.setUser(JSON.stringify({ id, name, avatar }));
+			const userAvatar = avatar === '' ? defaultAvatar : avatar;
+			useLocalStorage.setUser(JSON.stringify({ id, name, avatar: userAvatar }));
 			useLocalStorage.setToken(result.data.token);
 			setUser({
 				id,
 				name,
-				avatar,
+				avatar: userAvatar,
 			});
 			successCallback();
 		} else {
@@ -43,12 +45,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		const result = await User.register(params);
 		if (result.data?.token) {
 			const { id, name, avatar } = result.data.user;
-			useLocalStorage.setUser(JSON.stringify({ id, name, avatar }));
+			const userAvatar = avatar === '' ? defaultAvatar : avatar;
+			useLocalStorage.setUser(JSON.stringify({ id, name, avatar: userAvatar }));
 			useLocalStorage.setToken(result.data.token);
 			setUser({
 				id,
 				name,
-				avatar,
+				avatar: userAvatar,
 			});
 			successCallback();
 		} else {

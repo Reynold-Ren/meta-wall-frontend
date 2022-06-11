@@ -26,6 +26,7 @@ import {
 import { OrderResponseType, CreateOrderParams, FetchAddValueListResponseType } from '../models/order.interface';
 import { CreateCommentParams, CommentResponseType } from '../models/comment.interface';
 import { DonateUserParams, FetchDonateListResponseType } from '../models/donate.interface';
+import { MessageType, SendMessageParamsType, EnterRoom, EnterRoomResponseType } from '../models/message.interface';
 
 const getAuth = (token: string): object => ({
 	headers: { Authorization: `Bearer ${token}` },
@@ -53,7 +54,8 @@ const request = {
 		instance.post(url, body, headers).then(responseBody).catch(errorBody),
 	patch: (url: string, body: any, headers?: AxiosRequestConfig) =>
 		instance.patch(url, body, headers).then(responseBody).catch(errorBody),
-	put: (url: string, body: any) => instance.put(url, body).then(responseBody).catch(errorBody),
+	put: (url: string, body: any, headers?: AxiosRequestConfig) =>
+		instance.put(url, body, headers).then(responseBody).catch(errorBody),
 	delete: (url: string, body: any, headers?: AxiosRequestConfig) =>
 		instance
 			.delete(url, { data: body, ...headers })
@@ -118,3 +120,10 @@ export const Donate = {
 
 export const upload = (params: any): Promise<CommonResponseType> =>
 	request.post('/upload', params, getAuth(useLocalStorage.getToken()));
+
+export const Messages = {
+	enterRoom: (params: EnterRoom): Promise<EnterRoomResponseType> =>
+		request.put('/chat', params, getAuth(useLocalStorage.getToken())),
+	send: (params: SendMessageParamsType): Promise<MessageType> =>
+		request.post('/chat', params, getAuth(useLocalStorage.getToken())),
+};

@@ -2,7 +2,6 @@ import './listItem.scss';
 import FollowsAddOn from './FollowsAddOn';
 import LikesAddOn from './LikesAddOn';
 import DonateAddOn from './DonateAddOn';
-import defaultAvatar from '../../assets/user_default.png';
 import { UserFieldType } from '../../models/user.interface';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
@@ -87,7 +86,7 @@ const ListItem = ({ type, data, remove }: ListItemProps) => {
 		<div className="listItemContainer">
 			<div className="listItemContainer__info" onClick={handleAuthorOnClick}>
 				<div className="listItemContainer__info-avatar">
-					<img src={avatar === '' ? defaultAvatar : avatar} alt="" />
+					<img src={avatar} alt="" />
 				</div>
 				<div className="listItemContainer__info-detail">
 					<h3>{name}</h3>

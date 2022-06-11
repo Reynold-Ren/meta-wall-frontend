@@ -10,7 +10,7 @@ const AppContainer = (props: { children: React.ReactNode }) => {
 	const { children } = props;
 	const { user } = useAuthContext();
 	const location = useLocation();
-	const excludeSideBarRoute = ['/shop'];
+	const excludeSideBarRoute = ['/shop', '/chat'];
 
 	useEffect(() => {
 		setExcludeSidebar(!excludeSideBarRoute.includes(location.pathname));

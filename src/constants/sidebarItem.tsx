@@ -1,4 +1,5 @@
 import { BiLike, BiBell, BiCoin, BiDonateBlood, BiCoinStack } from 'react-icons/bi';
+import { AiOutlineMessage } from 'react-icons/ai';
 
 export const SIDEBAR_ITEM = [
 	{
@@ -30,5 +31,11 @@ export const SIDEBAR_ITEM = [
 		icon: <BiCoinStack />,
 		wording: '儲值紀錄',
 		link: '/addValue-history',
+	},
+	{
+		order: 6,
+		icon: <AiOutlineMessage />,
+		wording: '六角聊天室',
+		link: '/chat',
 	},
 ];

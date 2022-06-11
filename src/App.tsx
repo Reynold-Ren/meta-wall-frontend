@@ -15,6 +15,7 @@ import SocialLogin from './components/SocialLogin';
 import SinglePost from './views/SinglePost';
 import DonateHistory from './views/DonateHistory';
 import AddValueHistory from './views/AddValueHistory';
+import Chat from './views/Chat';
 
 function App() {
 	return (
@@ -101,6 +102,14 @@ function App() {
 						element={
 							<RequireAuth>
 								<DonateHistory />
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="chat"
+						element={
+							<RequireAuth>
+								<Chat />
 							</RequireAuth>
 						}
 					/>

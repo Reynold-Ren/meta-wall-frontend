@@ -1,0 +1,58 @@
+@import '../../scss/setup';
+
+.appContainer__body-isLogin .chatContainer {
+	margin-right: 0;
+}
+
+.messageContainer {
+	display: flex;
+	flex-direction: row-reverse;
+	margin-bottom: 18px;
+	&.isSelf {
+		flex-direction: row;
+		.messageContainer__info {
+			margin-right: 0;
+			margin-left: 8px;
+		}
+		.messageContainer__info-body {
+			justify-content: flex-start;
+		}
+	}
+	&__avatarContainer {
+		position: relative;
+		svg {
+			position: absolute;
+			color: $yellow;
+			left: 0;
+			right: 0;
+			top: -12px;
+			margin: auto;
+		}
+	}
+	&__avatar {
+		@include avatar(50px);
+	}
+	&__info {
+		margin-right: 8px;
+		&__head {
+			display: flex;
+			align-items: center;
+			padding: 6px 0 8px;
+			&-time {
+				font-size: $font-s;
+				color: $gray-300;
+			}
+			&-name {
+				font-size: $font-m;
+				color: $black;
+				padding-right: 8px;
+			}
+		}
+		&-body {
+			display: flex;
+			justify-content: flex-end;
+			font-size: $font-m;
+			color: $black;
+		}
+	}
+}

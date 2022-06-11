@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState } from 'react';
 import { useLoginContext } from '../../context/login';
 import { useAuthContext } from '../../context/auth';
+import { Link } from 'react-router-dom';
 
 interface IFormValues {
 	email: string;
@@ -52,11 +53,14 @@ const LoginForm = () => {
 			</div>
 			<div className="loginFormContainer__inputGroup">
 				<input type="password" placeholder="Password" {...register('password', { required: '密碼尚未填寫' })} />
-				{errors.password?.message !== '' && <span className="errorMessage">{errors.password?.message}</span>}
+				<div className="password-tips">
+					{errors.password?.message !== '' && <span className="errorMessage">{errors.password?.message}</span>}
+					<p onClick={() => swtichMode('forget')}>忘記密碼？</p>
+				</div>
 			</div>
 			{isError && <span className="errorMessage errorMessage-apis">{errorMessage}</span>}
 			<Button wording="登入" style="primary" disabled={checkErrors(errors)} />
-			<Button wording="註冊" handleClick={swtichMode} style="secondry" />
+			<Button wording="註冊" handleClick={() => swtichMode('register')} style="secondry" />
 		</form>
 	);
 };

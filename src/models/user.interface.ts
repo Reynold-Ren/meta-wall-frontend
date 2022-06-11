@@ -1,3 +1,4 @@
+import instance from '../apis/axios';
 import { CommonResponseType } from './basic.interface';
 import { PostResponseType } from './post.interface';
 
@@ -19,7 +20,7 @@ export interface RegisterParams extends LoginParams {
 	confirmPassword: string;
 }
 
-export interface ResetPasswordParams {
+export interface UpdatePasswordParams {
 	password: string;
 	confirmPassword: string;
 }
@@ -80,4 +81,12 @@ export interface FetchSpecUserResponseType extends CommonResponseType {
 		};
 		post: PostResponseType[];
 	};
+}
+
+export interface ForgetPasswordParams {
+	email: string;
+}
+
+export interface ResetPasswordParams extends UpdatePasswordParams {
+	token: string;
 }

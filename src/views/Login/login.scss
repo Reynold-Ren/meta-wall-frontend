@@ -31,7 +31,7 @@
 
 .socialLoginContainer {
 	@include rowVertically();
-	margin-top: 8px;
+	margin-top: 18px;
 	a {
 		@include rowVertically();
 		@include basicBorder();

@@ -2,6 +2,7 @@ import './resetPassword.scss';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { User } from '../../../apis/apis';
+import { useLoginContext } from '../../../context/login';
 import Button from '../../Button';
 
 interface IFormValues {
@@ -9,9 +10,14 @@ interface IFormValues {
 	confirmPwd: string;
 }
 
-const ResetPassword = () => {
+type ResetPasswordPropsType = {
+	token?: string;
+};
+
+const ResetPassword = ({ token }: ResetPasswordPropsType) => {
 	const [isError, setError] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState<string>('');
+	const { swtichMode } = useLoginContext();
 	const {
 		register,
 		formState: { errors },
@@ -20,12 +26,22 @@ const ResetPassword = () => {
 
 	const onSubmit: SubmitHandler<IFormValues> = async (data) => {
 		const { password, confirmPwd } = data;
-		const result = await User.resetPassword({ password, confirmPassword: confirmPwd });
-		if (result.status) {
-			console.log(result);
+		if (token) {
+			const result = await User.resetPassword({ token, password, confirmPassword: confirmPwd });
+			if (result.status) {
+				swtichMode('login');
+			} else {
+				setError(true);
+				setErrorMessage(result.message);
+			}
 		} else {
-			setError(true);
-			setErrorMessage(result.message);
+			const result = await User.updatePassword({ password, confirmPassword: confirmPwd });
+			if (result.status) {
+				console.log(result);
+			} else {
+				setError(true);
+				setErrorMessage(result.message);
+			}
 		}
 	};
 
@@ -36,6 +52,7 @@ const ResetPassword = () => {
 			<div className="resetFormContainer__inputGroup">
 				<label>輸入新密碼</label>
 				<input
+					type="password"
 					placeholder="請輸入新密碼"
 					{...register('password', {
 						required: '新密碼尚未填寫',
@@ -46,7 +63,7 @@ const ResetPassword = () => {
 			<div className="resetFormContainer__inputGroup">
 				<label>再次輸入</label>
 				<input
-					type="confirmPwd"
+					type="password"
 					placeholder="再次輸入新密碼"
 					{...register('confirmPwd', { required: '請再次輸入密碼' })}
 				/>

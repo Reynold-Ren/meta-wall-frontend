@@ -76,7 +76,7 @@ const RegisterForm = () => {
 			</div>
 			{isError && <span className="errorMessage errorMessage-apis">{errorMessage}</span>}
 			<Button wording="註冊" style="primary" disabled={checkErrors(errors)} />
-			<Button wording="登入" handleClick={swtichMode} style="secondry" />
+			<Button wording="登入" handleClick={() => swtichMode('login')} style="secondry" />
 		</form>
 	);
 };

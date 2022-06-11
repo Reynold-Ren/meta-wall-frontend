@@ -1,6 +1,6 @@
 @import '../../scss/setup';
 
-.loginFormContainer {
+.resetFormContainer {
 	text-align: center;
 	&__inputGroup {
 		@extend %inputGroup;
@@ -17,10 +17,21 @@
 		justify-content: space-between;
 		align-items: center;
 		padding-top: 4px;
-		p {
+		a {
 			color: $gray-600;
 			font-size: $font-s;
-			cursor: pointer;
 		}
 	}
+}
+
+.resetPasswordModal-title {
+	font-size: $font-xl;
+	font-weight: bold;
+	color: $black;
+	margin-bottom: 32px;
+}
+
+.resetPasswordModal-subtitle {
+	font-size: $font-l;
+	color: $black;
 }

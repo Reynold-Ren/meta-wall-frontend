@@ -6,13 +6,15 @@ import {
 	LoginParams,
 	LoginResponseType,
 	RegisterParams,
-	ResetPasswordParams,
+	UpdatePasswordParams,
 	EditProfileParams,
 	EditProfileResponseType,
 	LikeListResponseType,
 	FollowListResponseType,
 	FollowUserParams,
 	FetchSpecUserResponseType,
+	ForgetPasswordParams,
+	ResetPasswordParams,
 } from '../models/user.interface';
 import {
 	CreatePostParams,
@@ -66,7 +68,7 @@ const request = {
 export const User = {
 	login: (params: LoginParams): Promise<LoginResponseType> => request.post('/user/login', params),
 	register: (params: RegisterParams): Promise<LoginResponseType> => request.post('/user/create', params),
-	resetPassword: (params: ResetPasswordParams): Promise<CommonResponseType> =>
+	updatePassword: (params: UpdatePasswordParams): Promise<CommonResponseType> =>
 		request.post('/user/update_password', params, getAuth(useLocalStorage.getToken())),
 	editProfile: (params: EditProfileParams): Promise<EditProfileResponseType> =>
 		request.patch('/user/profile', params, getAuth(useLocalStorage.getToken())),
@@ -78,6 +80,10 @@ export const User = {
 		request.post(`${params.id}/follow`, {}, getAuth(useLocalStorage.getToken())),
 	unFollow: (params: FollowUserParams): Promise<CommonResponseType> =>
 		request.delete(`${params.id}/unfollow`, {}, getAuth(useLocalStorage.getToken())),
+	forgetPassword: (params: ForgetPasswordParams): Promise<CommonResponseType> =>
+		request.post('/user/forget_password', params, getAuth(useLocalStorage.getToken())),
+	resetPassword: (params: ResetPasswordParams): Promise<CommonResponseType> =>
+		request.patch('/user/reset_password', params),
 };
 
 export const Posts = {

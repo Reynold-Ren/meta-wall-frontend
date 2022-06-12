@@ -64,8 +64,8 @@ const ForgetForm = () => {
 				<Button wording="返回登入" handleClick={() => swtichMode('login')} style="secondry" />
 			</form>
 			<Modal isOpen={isOpen} onRequestClose={closeModal} style={CUSTOM_STYLES} contentLabel="Modal">
-				<h3 className="resetPasswordModal-title">通知</h3>
-				<h4 className="resetPasswordModal-subtitle">重設密碼信件已經寄出！</h4>
+				<h3 className="forgetPasswordModal-title">通知</h3>
+				<h4 className="forgetPasswordModal-subtitle">重設密碼信件已經寄出！</h4>
 			</Modal>
 		</>
 	);

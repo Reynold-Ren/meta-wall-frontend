@@ -24,14 +24,15 @@
 	}
 }
 
-.resetPasswordModal-title {
+.forgetPasswordModal-title {
 	font-size: $font-xl;
 	font-weight: bold;
 	color: $black;
 	margin-bottom: 32px;
+	text-align: center;
 }
 
-.resetPasswordModal-subtitle {
+.forgetPasswordModal-subtitle {
 	font-size: $font-l;
 	color: $black;
 }

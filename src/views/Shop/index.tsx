@@ -7,6 +7,7 @@ import './shop.scss';
 import { useAuthContext } from '../../context/auth';
 import { SHOP_ITEMS } from '../../constants/shopItems';
 import { CUSTOM_STYLES } from '../../constants/modalStyle';
+import { useNavigate } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 
@@ -15,6 +16,7 @@ const Shop = () => {
 	const [listening, setListening] = useState<boolean>(false);
 	const { user } = useAuthContext();
 	const API_URL = process.env.REACT_APP_API_URL;
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (!listening) {
@@ -36,6 +38,7 @@ const Shop = () => {
 
 	function closeModal() {
 		setIsOpen(false);
+		navigate('/addValue-history');
 	}
 
 	return (

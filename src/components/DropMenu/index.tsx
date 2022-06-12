@@ -24,7 +24,7 @@ const DropMenu = () => {
 			<CSSTransition in={isDropMenuShow} timeout={1000} classNames="dropmenu" nodeRef={nodeRef} unmountOnExit>
 				<ul className="dropmenuContainer__list" ref={nodeRef}>
 					<li className="dropmenuContainer__listItem">
-						<Link to="/">我的貼文牆</Link>
+						<Link to={`/user/${user.id}`}>我的貼文牆</Link>
 					</li>
 					<li className="dropmenuContainer__listItem">
 						<Link to="/profile">修改個人資料</Link>

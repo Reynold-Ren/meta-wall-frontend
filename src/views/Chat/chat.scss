@@ -20,6 +20,7 @@
 	}
 	&__avatarContainer {
 		position: relative;
+		cursor: pointer;
 		svg {
 			position: absolute;
 			color: $yellow;

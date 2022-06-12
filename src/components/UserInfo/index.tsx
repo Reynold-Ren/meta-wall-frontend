@@ -7,6 +7,7 @@ import { User, Donate } from '../../apis/apis';
 import Modal from 'react-modal';
 import { CUSTOM_STYLES } from '../../constants/modalStyle';
 import { useAuthContext } from '../../context/auth';
+import { useNavigate } from 'react-router-dom';
 
 type FollowersType = {
 	user: string;
@@ -31,7 +32,8 @@ const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 	const [follower, setFollower] = useState<FollowersType[]>([]);
 	const [donateCoinNum, setDonateCoinNum] = useState<number>(0);
 	const { _id, name, avatar } = userInfo;
-	const { user } = useAuthContext();
+	const { user, setUser } = useAuthContext();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		setFollower(userInfo.followers);
@@ -68,6 +70,10 @@ const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 	const handleDonateBtnOnClick = async () => {
 		const result = await Donate.user({ authorUserID: _id, coinNum: donateCoinNum });
 		if (result.status) {
+			setUser({
+				...user,
+				coin: user.coin - donateCoinNum,
+			});
 			closeModal();
 			openResultModal();
 		}
@@ -87,6 +93,7 @@ const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 
 	function closeResultModal() {
 		setResultModalIsOpen(false);
+		navigate(`/donate-history`);
 	}
 
 	return (
@@ -120,8 +127,8 @@ const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 						<input type="number" min="1" onChange={handleInputChange} />
 					</div>
 				</div>
-				<Button wording="取消贊助" style="primary" layout="UnDonate" handleClick={closeModal} />
 				<Button wording="確認贊助" style="primary" layout="Donate" handleClick={handleDonateBtnOnClick} />
+				<Button wording="取消贊助" style="primary" layout="UnDonate" handleClick={closeModal} />
 			</Modal>
 			<Modal isOpen={resultModalIsOpen} onRequestClose={closeResultModal} style={CUSTOM_STYLES} contentLabel="Modal">
 				<div className="donateResultContainer">

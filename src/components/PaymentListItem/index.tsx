@@ -26,7 +26,7 @@ const PaymentListItem = ({ data }: AddValueItemProps) => {
 	const { tradeNo, amt, payTime, paymentType, IP, payment_status } = data;
 
 	const timeFormat = (payTime: number) => {
-		const theDay = moment(payTime);
+		const theDay = moment(payTime).subtract(8, 'hours');
 		return theDay.format('YYYY-MM-DD HH:mm');
 	};
 

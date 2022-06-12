@@ -42,6 +42,7 @@ export interface LoginResponseType extends CommonResponseType {
 			id?: string;
 			name?: string;
 			avatar: string;
+			coin: number;
 		};
 	};
 }

@@ -8,3 +8,22 @@
 	padding: 32px 24px;
 	border: 2px solid $black;
 }
+
+.userSelf {
+	width: 100%;
+	.sidebarItemContainer {
+		margin-top: 0;
+	}
+}
+
+.sidebarItemContainer__coin {
+	display: inline-flex;
+	align-items: center;
+	color: $gray;
+	font-size: $font-m;
+	margin-left: auto;
+	svg {
+		color: $yellow;
+		margin-left: 4px;
+	}
+}

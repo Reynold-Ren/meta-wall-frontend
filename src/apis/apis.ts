@@ -81,9 +81,9 @@ export const User = {
 	getFollowList: (): Promise<FollowListResponseType> =>
 		request.get('/user/getFollowList/', getAuth(useLocalStorage.getToken())),
 	follow: (params: FollowUserParams): Promise<CommonResponseType> =>
-		request.post(`${params.id}/follow`, {}, getAuth(useLocalStorage.getToken())),
+		request.post(`/user/${params.id}/follow`, {}, getAuth(useLocalStorage.getToken())),
 	unFollow: (params: FollowUserParams): Promise<CommonResponseType> =>
-		request.delete(`${params.id}/unfollow`, {}, getAuth(useLocalStorage.getToken())),
+		request.delete(`/user/${params.id}/unfollow`, {}, getAuth(useLocalStorage.getToken())),
 	forgetPassword: (params: ForgetPasswordParams): Promise<CommonResponseType> =>
 		request.post('/user/forget_password', params, getAuth(useLocalStorage.getToken())),
 	resetPassword: (params: ResetPasswordParams): Promise<CommonResponseType> =>

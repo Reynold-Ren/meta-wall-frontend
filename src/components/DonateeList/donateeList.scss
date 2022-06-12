@@ -23,6 +23,7 @@
 .donateeListItemContainer {
 	@include rowVertically();
 	justify-content: flex-start;
+	margin-bottom: 8px;
 	.donateeListItem {
 		&-avatar {
 			flex: 0 0 50px;
@@ -48,7 +49,7 @@
 			}
 		}
 		&-time {
-			flex: 0 0 42px;
+			flex: 0 0 46px;
 			margin-left: 4px;
 			color: $gray;
 		}

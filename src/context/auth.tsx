@@ -1,12 +1,13 @@
 import { createContext, useContext, useState } from 'react';
 import { User } from '../apis/apis';
 import { useLocalStorage } from '../helpers/useLocalSotrage';
-import { LoginParams, RegisterParams } from '../models/user.interface';
+import { LoginParams, RegisterParams, SetCoinParams } from '../models/user.interface';
 import defaultAvatar from '../assets/user_default.png';
 
 interface AuthContextType {
 	user: any;
 	setUser: React.Dispatch<any>;
+	setCoin: (params: SetCoinParams) => void;
 	signin: (params: LoginParams, successCallback: VoidFunction, failedCallback: (msg: string) => void) => void;
 	signup: (params: RegisterParams, successCallback: VoidFunction, failedCallback: (msg: string) => void) => void;
 	signout: (callback: VoidFunction) => void;
@@ -68,7 +69,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		callback();
 	};
 
-	const value = { user, setUser, signin, signup, signout };
+	const setCoin = ({ coinNum }: SetCoinParams) => {
+		setUser({
+			...user,
+			coin: user.coin + coinNum,
+		});
+
+		useLocalStorage.setUser(JSON.stringify({ ...user, coin: user.coin + coinNum }));
+	};
+
+	const value = { user, setUser, setCoin, signin, signup, signout };
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

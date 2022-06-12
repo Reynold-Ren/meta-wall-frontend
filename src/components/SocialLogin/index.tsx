@@ -13,14 +13,16 @@ const SocialLogin = ({ children }: { children: JSX.Element }) => {
 		const id = searchParams.get('id') as string;
 		const name = searchParams.get('name') as string;
 		const avatar = searchParams.get('avatar') === 'undefined' ? defaultAvatar : (searchParams.get('avatar') as string);
+		const coin = searchParams.get('coin') as string;
 
 		setUser({
 			id,
 			name,
 			avatar,
+			coin,
 		});
 
-		useLocalStorage.setUser(JSON.stringify({ id, name, avatar }));
+		useLocalStorage.setUser(JSON.stringify({ id, name, avatar, coin }));
 		useLocalStorage.setToken(token);
 	}
 

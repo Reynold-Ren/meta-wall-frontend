@@ -8,13 +8,14 @@ import { useAuthContext } from '../../context/auth';
 import { SHOP_ITEMS } from '../../constants/shopItems';
 import { CUSTOM_STYLES } from '../../constants/modalStyle';
 import { useNavigate } from 'react-router-dom';
+import { PRODUCT_AMT } from '../../constants/productItem';
 
 Modal.setAppElement('#root');
 
 const Shop = () => {
 	const [modalIsOpen, setIsOpen] = useState<boolean>(false);
 	const [listening, setListening] = useState<boolean>(false);
-	const { user } = useAuthContext();
+	const { user, setCoin } = useAuthContext();
 	const API_URL = process.env.REACT_APP_API_URL;
 	const navigate = useNavigate();
 
@@ -22,9 +23,11 @@ const Shop = () => {
 		if (!listening) {
 			const events = new EventSource(`${API_URL}/donate/events?id=${user.id}`);
 			events.onmessage = (event) => {
+				console.log(event);
 				const parsedData = JSON.parse(event.data);
 				if (parsedData?.id === user.id) {
 					openModal();
+					setCoin({ coinNum: PRODUCT_AMT[parsedData?.amt].coinNum });
 				}
 			};
 

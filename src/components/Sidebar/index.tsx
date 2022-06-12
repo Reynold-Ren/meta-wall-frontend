@@ -18,7 +18,7 @@ const Sidebar = () => {
 			<div className="sidebarItemContainer userSelf">
 				<SidebarItem avatar={user.avatar} wording={user.name} handleClick={() => navigate(`/user/${user.id}`)} />
 				<div className="sidebarItemContainer__coin">
-					{user.coin} 枚<BiCoin />
+					{user.coin ? user.coin : 0} 枚<BiCoin />
 				</div>
 			</div>
 			{SIDEBAR_ITEM.map((item) => (

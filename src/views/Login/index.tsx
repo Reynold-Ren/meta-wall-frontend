@@ -23,7 +23,6 @@ const Login = () => {
 	const token = searchParams.get('token') as string;
 
 	useEffect(() => {
-		console.log(token);
 		if (useLocalStorage.tokenIsExists()) {
 			setUser(JSON.parse(useLocalStorage.getUser()));
 			navigate(from, { replace: true });

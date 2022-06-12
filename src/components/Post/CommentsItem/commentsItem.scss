@@ -6,9 +6,16 @@
 	background-color: $gray-100;
 	border-radius: 12px;
 	margin-top: 16px;
+	&:hover {
+		.commentsItemContainer__info h3, .commentsItemContainer__info span {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	}
 	&__avatar {
 		@include avatar(40px);
 		margin-right: 12px;
+		cursor: pointer;
 	}
 	&__info {
 		@include columnVertically();

@@ -91,3 +91,7 @@ export interface ForgetPasswordParams {
 export interface ResetPasswordParams extends UpdatePasswordParams {
 	token: string;
 }
+
+export interface SetCoinParams {
+	coinNum: number;
+}

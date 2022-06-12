@@ -41,7 +41,7 @@ const PaymentListItem = ({ data }: AddValueItemProps) => {
 	return (
 		<div className="paymentListItemContainer">
 			<div className="paymentListItemContainer__info-detail">
-				<h3>{PRODUCT_AMT[amt]}</h3>
+				<h3>{PRODUCT_AMT[amt].title}</h3>
 				<p>購買時間：{timeFormat(payTime)}</p>
 			</div>
 			<div className="paymentListItemContainer__tools">
@@ -58,7 +58,7 @@ const PaymentListItem = ({ data }: AddValueItemProps) => {
 					</li>
 					<li>
 						<h3>產品名稱</h3>
-						<p>{PRODUCT_AMT[amt]}</p>
+						<p>{PRODUCT_AMT[amt].title}</p>
 					</li>
 					<li>
 						<h3>交易金額</h3>

@@ -30,6 +30,7 @@ const ResetPassword = ({ token }: ResetPasswordPropsType) => {
 	} = useForm<IFormValues>();
 
 	const onSubmit: SubmitHandler<IFormValues> = async (data) => {
+		openModal();
 		const { password, confirmPwd } = data;
 		if (token) {
 			const result = await User.resetPassword({ token, password, confirmPassword: confirmPwd });

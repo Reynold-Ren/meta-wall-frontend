@@ -32,7 +32,7 @@ const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 	const [follower, setFollower] = useState<FollowersType[]>([]);
 	const [donateCoinNum, setDonateCoinNum] = useState<number>(0);
 	const { _id, name, avatar } = userInfo;
-	const { user, setUser } = useAuthContext();
+	const { user, setCoin } = useAuthContext();
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -70,9 +70,8 @@ const UserInfo = ({ userInfo }: UserInfoPropsType) => {
 	const handleDonateBtnOnClick = async () => {
 		const result = await Donate.user({ authorUserID: _id, coinNum: donateCoinNum });
 		if (result.status) {
-			setUser({
-				...user,
-				coin: user.coin - donateCoinNum,
+			setCoin({
+				coinNum: -donateCoinNum,
 			});
 			closeModal();
 			openResultModal();
